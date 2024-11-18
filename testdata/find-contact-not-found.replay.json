@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "ca683513829d04fd",
+      "ID": "d7d84445c833bc47",
       "Request": {
         "Method": "GET",
         "URL": "https://app.loops.so/api/v1/contacts/find?userId=not_found",
@@ -72,7 +72,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "8e48a634de915bb4-VIE"
+            "8e48e24b2ac43257-VIE"
           ],
           "Content-Length": [
             "2"
@@ -84,7 +84,7 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Mon, 18 Nov 2024 14:28:50 GMT"
+            "Mon, 18 Nov 2024 15:09:51 GMT"
           ],
           "Etag": [
             "\"38jmpejbxv2\""
@@ -117,7 +117,7 @@
             "BYPASS"
           ],
           "X-Vercel-Id": [
-            "fra1::iad1::7f9km-1731940130087-001384838447"
+            "fra1::iad1::24n79-1731942591260-3e2d63340fb6"
           ]
         },
         "Body": "W10="

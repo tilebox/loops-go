@@ -22,6 +22,9 @@ func main() {
 		FirstName:  loops.String("Neil"),
 		LastName:   loops.String("Armstrong"),
 		Subscribed: true,
+		CustomProperties: map[string]interface{}{ // custom user defined properties for contacts
+			"role": "Astronaut",
+		},
 	})
 	if err != nil {
 		slog.Error("failed to create contact", slog.Any("error", err.Error()))

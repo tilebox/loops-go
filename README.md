@@ -59,6 +59,10 @@ contactID, err := client.CreateContact(ctx, &loops.Contact{
     LastName:   loops.String("Armstrong"),
     UserGroup:  loops.String("Astronauts"),
     Subscribed: true,
+    // custom user defined properties for contacts
+    CustomProperties: map[string]interface{}{
+        "role": "Astronaut",
+    },
 })
 if err != nil {
     slog.Error("failed to create contact", slog.Any("error", err.Error()))

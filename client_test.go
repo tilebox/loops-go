@@ -29,7 +29,7 @@ func newRecordTestClient(t *testing.T, recordingFile string) *Client { //nolint:
 	recorder, err := httpreplay.NewRecorder(path.Join(TestdataDir(), recordingFile), nil)
 	require.NoError(t, err)
 	t.Cleanup(func() { _ = recorder.Close() })
-	client, err := NewClient(WithAPIKey("LOOPS_API_KEY"), WithHTTPClient(recorder.Client()))
+	client, err := NewClient(WithAPIKey("90b73b0acdfbe5526bdd5af254fc56ca"), WithHTTPClient(recorder.Client()))
 	require.NoError(t, err)
 	return client
 }
@@ -51,9 +51,12 @@ func TestCreateContact(t *testing.T) {
 		LastName:   String("User"),
 		UserID:     String("user_123"),
 		Subscribed: true,
+		CustomProperties: map[string]interface{}{
+			"companyRole": "Developer",
+		},
 	})
 	require.NoError(t, err)
-	assert.Equal(t, "cm3n47oh7010hpt4megzzqujt", contactID)
+	assert.Equal(t, "cm3n4kiua02c0t839btycnwe1", contactID)
 }
 
 func TestUpdateContact(t *testing.T) {
@@ -66,7 +69,7 @@ func TestUpdateContact(t *testing.T) {
 		Subscribed: true,
 	})
 	require.NoError(t, err)
-	assert.Equal(t, "cm3n47oh7010hpt4megzzqujt", contactID)
+	assert.Equal(t, "cm3n4kiua02c0t839btycnwe1", contactID)
 }
 
 func TestFindContact(t *testing.T) {
@@ -75,11 +78,18 @@ func TestFindContact(t *testing.T) {
 		Email: String("new-test-mail@example.com"),
 	})
 	require.NoError(t, err)
-	assert.Equal(t, "cm3n47oh7010hpt4megzzqujt", contact.ID)
+	assert.Equal(t, "cm3n4kiua02c0t839btycnwe1", contact.ID)
 	assert.Equal(t, "new-test-mail@example.com", contact.Email)
 	assert.Equal(t, "Test", *contact.FirstName)
 	assert.Equal(t, "User", *contact.LastName)
 	assert.Equal(t, "user_123", *contact.UserID)
+
+	companyRole, ok := contact.CustomProperties["companyRole"]
+	assert.True(t, ok)
+	companyRoleStr, ok := companyRole.(string)
+	assert.True(t, ok)
+	assert.Equal(t, "Developer", companyRoleStr)
+
 	assert.True(t, contact.Subscribed)
 }
 
@@ -89,11 +99,18 @@ func TestFindContactByID(t *testing.T) {
 		UserID: String("user_123"),
 	})
 	require.NoError(t, err)
-	assert.Equal(t, "cm3n47oh7010hpt4megzzqujt", contact.ID)
+	assert.Equal(t, "cm3n4kiua02c0t839btycnwe1", contact.ID)
 	assert.Equal(t, "new-test-mail@example.com", contact.Email)
 	assert.Equal(t, "Test", *contact.FirstName)
 	assert.Equal(t, "User", *contact.LastName)
 	assert.Equal(t, "user_123", *contact.UserID)
+
+	companyRole, ok := contact.CustomProperties["companyRole"]
+	assert.True(t, ok)
+	companyRoleStr, ok := companyRole.(string)
+	assert.True(t, ok)
+	assert.Equal(t, "Developer", companyRoleStr)
+
 	assert.True(t, contact.Subscribed)
 }
 

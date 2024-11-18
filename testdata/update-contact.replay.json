@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "4ca9bfedf1a9c11b",
+      "ID": "996c37fd1574a10b",
       "Request": {
         "Method": "PUT",
         "URL": "https://app.loops.so/api/v1/contacts/update",
@@ -39,7 +39,7 @@
             "gzip"
           ],
           "Content-Length": [
-            "112"
+            "120"
           ],
           "User-Agent": [
             "Go-http-client/1.1"
@@ -47,7 +47,7 @@
         },
         "MediaType": "application/json",
         "BodyParts": [
-          "eyJlbWFpbCI6Im5ldy10ZXN0LW1haWxAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IiwibGFzdE5hbWUiOiJVc2VyIiwic3Vic2NyaWJlZCI6dHJ1ZSwidXNlcklkIjoidXNlcl8xMjMifQ=="
+          "eyJlbWFpbCI6Im5ldy10ZXN0LW1haWxAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IiwiaWQiOiIiLCJsYXN0TmFtZSI6IlVzZXIiLCJzdWJzY3JpYmVkIjp0cnVlLCJ1c2VySWQiOiJ1c2VyXzEyMyJ9"
         ]
       },
       "Response": {
@@ -75,7 +75,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "8e48a073ec205b87-VIE"
+            "8e48e0ae1cb75ae9-VIE"
           ],
           "Content-Encoding": [
             "gzip"
@@ -87,10 +87,10 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Mon, 18 Nov 2024 14:24:54 GMT"
+            "Mon, 18 Nov 2024 15:08:45 GMT"
           ],
           "Etag": [
-            "W/\"zbn3650bvy1d\""
+            "W/\"oai0fa27xa1d\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -120,10 +120,10 @@
             "MISS"
           ],
           "X-Vercel-Id": [
-            "fra1::iad1::c5kpb-1731939894416-cb1d16661fee"
+            "fra1::iad1::8jstk-1731942525246-b3b97f70f898"
           ]
         },
-        "Body": "H4sIAAAAAAAAA6pWKi5NTk4tLlayKikqTdVRykxRslJKzjXOMzHPzzA3MDTIKCgxyU1Nr6oqLM0qUaoFAAAA//8DAP/EpzQxAAAA"
+        "Body": "H4sIAAAAAAAAA6pWKi5NTk4tLlayKikqTdVRykxRslJKzjXOM8nOLE00MEo2KLEwtkwqqUzOK081VKoFAAAA//8DAKOElQ0xAAAA"
       }
     }
   ]
