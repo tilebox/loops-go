@@ -2,7 +2,115 @@
 
 ## Introduction
 
-A Go SDK for interacting with [Loops's] API - generated from their [OpenAPI Spec](https://app.loops.so/openapi.json) using [oapi-codegen](https://github.com/oapi-codegen/oapi-codegen).
+A Go SDK for interacting with [Loops's](https://loops.so) API.
+
+## Usage
+
+Below are a few examples of how to use the SDK to send API requests.
+For some full, working examples, see the [examples](examples) directory.
+
+**Create a client**:
+
+```go
+package main
+
+import (
+	"context"
+	"github.com/tilebox/loops-go"
+	"log/slog"
+)
+
+func main() {
+	ctx := context.Background()
+	client, err := loops.NewClient(loops.WithApiKey("YOUR_LOOPS_API_KEY"))
+	if err != nil {
+		slog.Error("failed to create client", slog.Any("error", err.Error()))
+		return
+	}
+	
+	// now use the client to make requests
+}
+```
+
+### Contacts
+
+**Find a contact**
+```go
+contactToFind := &loops.ContactIdentifier{
+    Email: loops.String("neil.armstrong@moon.space"),
+}
+
+contact, err := client.FindContact(ctx, contactToFind)
+if err != nil {
+    slog.Error("failed to find contact", slog.Any("error", err.Error()))
+    return
+}
+```
+
+**Create a contact**
+```go
+newContact := &loops.Contact{
+    Email:      "neil.armstrong@moon.space",
+    FirstName:  loops.String("Neil"),
+    LastName:   loops.String("Armstrong"),
+    UserGroup:  loops.String("Astronauts"),
+    Subscribed: true,
+}
+
+contactID, err := client.CreateContact(ctx, newContact)
+if err != nil {
+    slog.Error("failed to create contact", slog.Any("error", err.Error()))
+    return
+}
+```
+
+**Delete a contact**
+```go
+contactToDelete := &loops.ContactIdentifier{
+    Email: loops.String("neil.armstrong@moon.space"),
+}
+
+err = client.DeleteContact(ctx, contactToDelete)
+if err != nil {
+    slog.Error("failed to delete contact", slog.Any("error", err.Error()))
+    return
+}
+```
+
+### Events
+
+**Send an event**
+```go
+err = client.SendEvent(ctx, &loops.Event{
+    Email:     loops.String("neil.armstrong@moon.space"),
+    EventName: "joinedMission",
+    EventProperties: &map[string]interface{}{
+        "mission": "Apollo 11",
+    },
+})
+if err != nil {
+    slog.Error("failed to send event", slog.Any("error", err.Error()))
+    return
+}
+```
+
+### Transactional emails
+
+**Send a transactional email**
+
+```go
+err = client.SendTransactionalEmail(ctx, &loops.TransactionalEmail{
+    TransactionalId: "cm...",
+    Email:           "recipient@example.com",
+    DataVariables: &map[string]interface{}{
+        "name": "Recipient Name",
+    },
+})
+if err != nil {
+    slog.Error("failed to send transactional email", slog.Any("error", err.Error()))
+    return
+}
+```
 
 ## Installation
 
