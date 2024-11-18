@@ -8,7 +8,7 @@ func String(v string) *string {
 // Contact defines model for Contact.
 type Contact struct {
 	// The contact's ID.
-	Id string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 	// The contact's email address.
 	Email string `json:"email,omitempty"`
 	// The contact's first name.
@@ -22,19 +22,19 @@ type Contact struct {
 	// The contact's user group (used to segemnt users when sending emails).
 	UserGroup *string `json:"userGroup,omitempty"`
 	// A unique user ID (for example, from an external application).
-	UserId *string `json:"userId,omitempty"`
+	UserID *string `json:"userId,omitempty"`
 	// Mailing lists the contact is subscribed to.
 	MailingLists map[string]interface{} `json:"mailingLists,omitempty"`
 }
 
 type ContactIdentifier struct {
 	Email  *string `json:"email,omitempty"`
-	UserId *string `json:"userId,omitempty"`
+	UserID *string `json:"userId,omitempty"`
 }
 
 type MailingList struct {
 	// The ID of the list.
-	Id string `json:"id"`
+	ID string `json:"id"`
 	// The name of the list.
 	Name string `json:"name"`
 	// Whether the list is public (true) or private (false).
@@ -46,7 +46,7 @@ type Event struct {
 	// The contact's email address
 	Email *string `json:"email,omitempty"`
 	// The contact's unique user ID. This must already have been added to your contact in Loops.
-	UserId *string `json:"userId,omitempty"`
+	UserID *string `json:"userId,omitempty"`
 	// The name of the event
 	EventName string `json:"eventName"`
 	// Properties to update the contact with, including custom properties.
@@ -59,7 +59,7 @@ type Event struct {
 
 type TransactionalEmail struct {
 	// The ID of the transactional email to send.
-	TransactionalId string `json:"transactionalId"`
+	TransactionalID string `json:"transactionalId"`
 	// The email address of the recipient
 	Email string `json:"email"`
 	// Create a contact in your audience using the provided email address (if one doesn't already exist).
@@ -88,7 +88,7 @@ type CustomField struct {
 	Type string `json:"type"`
 }
 
-type ApiKeyInfo struct {
+type APIKeyInfo struct {
 	Success bool `json:"success"`
 	// The name of the team the API key belongs to.
 	TeamName string `json:"teamName"`

@@ -1,0 +1,127 @@
+{
+  "Initial": null,
+  "Version": "0.2",
+  "Converter": {
+    "ScrubBody": null,
+    "ClearHeaders": [
+      "^X-Goog-.*Encryption-Key$"
+    ],
+    "RemoveRequestHeaders": [
+      "^Authorization$",
+      "^Proxy-Authorization$",
+      "^Connection$",
+      "^Content-Type$",
+      "^Date$",
+      "^Host$",
+      "^Transfer-Encoding$",
+      "^Via$",
+      "^X-Forwarded-.*$",
+      "^X-Cloud-Trace-Context$",
+      "^X-Goog-Api-Client$",
+      "^X-Google-.*$",
+      "^X-Gfe-.*$"
+    ],
+    "RemoveResponseHeaders": [
+      "^X-Google-.*$",
+      "^X-Gfe-.*$"
+    ],
+    "ClearParams": null,
+    "RemoveParams": null
+  },
+  "Entries": [
+    {
+      "ID": "5aea57bc89f9160f",
+      "Request": {
+        "Method": "GET",
+        "URL": "https://app.loops.so/api/v1/contacts/find?email=new-test-mail%40example.com",
+        "Header": {
+          "Accept-Encoding": [
+            "gzip"
+          ],
+          "User-Agent": [
+            "Go-http-client/1.1"
+          ]
+        },
+        "MediaType": "application/json",
+        "BodyParts": [
+          ""
+        ]
+      },
+      "Response": {
+        "StatusCode": 200,
+        "Proto": "HTTP/1.1",
+        "ProtoMajor": 1,
+        "ProtoMinor": 1,
+        "Header": {
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+          ],
+          "Access-Control-Allow-Methods": [
+            "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Cache-Control": [
+            "public, max-age=0, must-revalidate"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Cf-Ray": [
+            "8e48a2d3be2b5a8c-VIE"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Security-Policy": [
+            "default-src 'self';    connect-src 'self' https://loops-prod-mjml-bucket.s3.amazonaws.com https://loops-prod-csv-uploads.s3.amazonaws.com https://vitals.vercel-insights.com https://browser-intake-datadoghq.com https://*.google-analytics.com https://api.zapier.com https://app.atlas.so https://app.getatlas.io wss://app.atlas.so https://*.filestackapi.com https://atlas-prod-uploads.s3.amazonaws.com https://ipgeolocation.abstractapi.com https://zapier.com;    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.zapier.com https://www.googletagmanager.com https://app.getatlas.io https://app.atlas.so https://static.filestackapi.com https://files.atlas.so;    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.zapier.com https://static.filestackapi.com;    img-src 'self' blob: data: https://d3b9kr64nievew.cloudfront.net https://atlas-prod-uploads.s3.amazonaws.com https://files.getatlas.io https://files.atlas.so https://static.filestackapi.com https://cdn.filestackcontent.com https://zapier-images.imgix.net;    font-src 'self' https://fonts.gstatic.com;    object-src 'none';    frame-src 'self' https://zapier.com;    media-src 'self' data:;    worker-src 'self' blob:;    base-uri 'self';    form-action 'self';    frame-ancestors 'none';    upgrade-insecure-requests;"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 18 Nov 2024 14:26:32 GMT"
+          ],
+          "Etag": [
+            "W/\"16csp7dtxqa5f\""
+          ],
+          "Permissions-Policy": [
+            "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=63072000"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Matched-Path": [
+            "/api/v1/contacts/find"
+          ],
+          "X-Ratelimit-Limit": [
+            "10"
+          ],
+          "X-Ratelimit-Remaining": [
+            "9"
+          ],
+          "X-Vercel-Cache": [
+            "BYPASS"
+          ],
+          "X-Vercel-Id": [
+            "fra1::iad1::gnwmc-1731939991781-8fdf5a76fbf9"
+          ]
+        },
+        "Body": "H4sIAAAAAAAAAzzOwQrCMBAE0H+ZcyqtLRRy0pMIIh70JCJpu7aRpqnZBKWl/y5B8LZvYJi9ztANJGqTD0VpuzLN0m70haF2ml7h6SFARukeEgO9E0/sk+gNfZQZe1rV1kDgoR37ozIEiTNxrPXqn1yYHATYBldHb0/7yFBx7XRFDaR3gQQCk9s5G0ZI4Md9/C4e92ydQyBu66E9aPYMOS/L7QsAAP//AwCgREeZwwAAAA=="
+      }
+    }
+  ]
+}
