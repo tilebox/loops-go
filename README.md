@@ -4,6 +4,12 @@
 
 A Go SDK for interacting with [Loops's](https://loops.so) API.
 
+## Installation
+
+```bash
+go get github.com/tilebox/loops-go
+```
+
 ## Usage
 
 Below are a few examples of how to use the SDK to send API requests.
@@ -22,7 +28,7 @@ import (
 
 func main() {
 	ctx := context.Background()
-	client, err := loops.NewClient(loops.WithApiKey("YOUR_LOOPS_API_KEY"))
+	client, err := loops.NewClient(loops.WithAPIKey("YOUR_LOOPS_API_KEY"))
 	if err != nil {
 		slog.Error("failed to create client", slog.Any("error", err.Error()))
 		return
@@ -36,11 +42,9 @@ func main() {
 
 **Find a contact**
 ```go
-contactToFind := &loops.ContactIdentifier{
+contact, err := client.FindContact(ctx, &loops.ContactIdentifier{
     Email: loops.String("neil.armstrong@moon.space"),
-}
-
-contact, err := client.FindContact(ctx, contactToFind)
+})
 if err != nil {
     slog.Error("failed to find contact", slog.Any("error", err.Error()))
     return
@@ -49,15 +53,13 @@ if err != nil {
 
 **Create a contact**
 ```go
-newContact := &loops.Contact{
+contactID, err := client.CreateContact(ctx, &loops.Contact{
     Email:      "neil.armstrong@moon.space",
     FirstName:  loops.String("Neil"),
     LastName:   loops.String("Armstrong"),
     UserGroup:  loops.String("Astronauts"),
     Subscribed: true,
-}
-
-contactID, err := client.CreateContact(ctx, newContact)
+})
 if err != nil {
     slog.Error("failed to create contact", slog.Any("error", err.Error()))
     return
@@ -66,11 +68,9 @@ if err != nil {
 
 **Delete a contact**
 ```go
-contactToDelete := &loops.ContactIdentifier{
+err = client.DeleteContact(ctx, &loops.ContactIdentifier{
     Email: loops.String("neil.armstrong@moon.space"),
-}
-
-err = client.DeleteContact(ctx, contactToDelete)
+})
 if err != nil {
     slog.Error("failed to delete contact", slog.Any("error", err.Error()))
     return
@@ -112,12 +112,32 @@ if err != nil {
 }
 ```
 
-## Installation
-
-```bash
-go get github.com/tilebox/loops-go
-```
-
 ## API Documentation
 
 The API documentation is part of the official Loops Documentation and can be found [here](https://app.loops.so/docs/api-reference/).
+
+## Contributing
+
+Contributions are welcome! Especially if the loops API is updated, please feel free to open PRs for new or updated endpoints.
+
+## Authors
+
+Created by [Tilebox](https://tilebox.com) - The Solar System’s #1 developer tool for space data management.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Development
+
+### Testing
+
+```bash
+go test ./...
+```
+
+### Linting
+
+```bash
+golangci-lint run --fix  ./...
+```

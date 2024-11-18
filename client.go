@@ -11,11 +11,11 @@ import (
 	"net/url"
 )
 
-const defaultApiURL = "https://app.loops.so/api/v1/"
+const defaultURL = "https://app.loops.so/api/v1/"
 
 var ErrContactNotFound = errors.New("contact not found")
 
-type HttpClient interface {
+type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
@@ -23,14 +23,14 @@ type RequestInterceptor func(ctx context.Context, req *http.Request) error
 
 type Client struct {
 	apiURL              *url.URL
-	httpClient          HttpClient
+	httpClient          HTTPClient
 	requestInterceptors []RequestInterceptor
 }
 
 // NewClient creates a new Loops client.
 func NewClient(opts ...ClientOption) (*Client, error) {
 	config := clientConfig{
-		apiURL:     defaultApiURL,
+		apiURL:     defaultURL,
 		httpClient: http.DefaultClient,
 	}
 	for _, o := range opts {
@@ -66,30 +66,30 @@ func NewClient(opts ...ClientOption) (*Client, error) {
 type clientConfig struct {
 	apiURL              string
 	apiKey              string
-	httpClient          HttpClient
+	httpClient          HTTPClient
 	requestInterceptors []RequestInterceptor
 }
 
 // ClientOption allows setting custom parameters during construction
 type ClientOption func(*clientConfig)
 
-// WithApiURL allows overriding the default API URL
-func WithApiURL(apiURL string) ClientOption {
+// WithURL allows overriding the default API URL (default: https://app.loops.so/api/v1/)
+func WithURL(apiURL string) ClientOption {
 	return func(c *clientConfig) {
 		c.apiURL = apiURL
 	}
 }
 
-// WithApiKey sets the loops API key to use
-func WithApiKey(apiKey string) ClientOption {
+// WithAPIKey sets the loops API key to use
+func WithAPIKey(apiKey string) ClientOption {
 	return func(c *clientConfig) {
 		c.apiKey = apiKey
 	}
 }
 
-// WithHttpClient allows overriding the default http client, in case you want to use a custom one (e.g. retryablehttp)
+// WithHTTPClient allows overriding the default http client, in case you want to use a custom one (e.g. retryablehttp)
 // or for testing purposes (e.g. mocking)
-func WithHttpClient(httpClient HttpClient) ClientOption {
+func WithHTTPClient(httpClient HTTPClient) ClientOption {
 	return func(c *clientConfig) {
 		c.httpClient = httpClient
 	}
@@ -135,10 +135,10 @@ func (c *Client) UpdateContact(ctx context.Context, contact *Contact) (string, e
 // FindContact finds a contact by email or userId.
 // See: https://loops.so/docs/api-reference/find-contact
 func (c *Client) FindContact(ctx context.Context, contact *ContactIdentifier) (*Contact, error) {
-	if contact.Email == nil && contact.UserId == nil {
+	if contact.Email == nil && contact.UserID == nil {
 		return nil, errors.New("contact identifier must contain either an email or a userId")
 	}
-	if contact.Email != nil && contact.UserId != nil {
+	if contact.Email != nil && contact.UserID != nil {
 		return nil, errors.New("contact identifier must contain either an email or a userId, but not both")
 	}
 
@@ -146,10 +146,10 @@ func (c *Client) FindContact(ctx context.Context, contact *ContactIdentifier) (*
 	if contact.Email != nil {
 		params.Add("email", *contact.Email)
 	}
-	if contact.UserId != nil {
-		params.Add("userId", *contact.UserId)
+	if contact.UserID != nil {
+		params.Add("userId", *contact.UserID)
 	}
-	req, err := newRequestWithQueryParams(c, ctx, http.MethodGet, "/contacts/find", params)
+	req, err := newGetRequestWithQueryParams(c, ctx, "/contacts/find", params)
 	if err != nil {
 		return nil, err
 	}
@@ -166,10 +166,10 @@ func (c *Client) FindContact(ctx context.Context, contact *ContactIdentifier) (*
 // DeleteContact deletes a contact by email or userId.
 // See: https://loops.so/docs/api-reference/delete-contact
 func (c *Client) DeleteContact(ctx context.Context, contact *ContactIdentifier) error {
-	if contact.Email == nil && contact.UserId == nil {
+	if contact.Email == nil && contact.UserID == nil {
 		return errors.New("contact identifier must contain either an email or a userId")
 	}
-	if contact.Email != nil && contact.UserId != nil {
+	if contact.Email != nil && contact.UserID != nil {
 		return errors.New("contact identifier must contain either an email or a userId, but not both")
 	}
 
@@ -184,7 +184,7 @@ func (c *Client) DeleteContact(ctx context.Context, contact *ContactIdentifier) 
 // GetMailingLists retrieves a list of an account’s mailing lists.
 // See: https://loops.so/docs/api-reference/get-mailing-lists
 func (c *Client) GetMailingLists(ctx context.Context) ([]*MailingList, error) {
-	req, err := newRequestWithQueryParams(c, ctx, http.MethodGet, "/lists", nil)
+	req, err := newGetRequestWithQueryParams(c, ctx, "/lists", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -195,10 +195,10 @@ func (c *Client) GetMailingLists(ctx context.Context) ([]*MailingList, error) {
 // SendEvent sends an event to trigger emails in Loops.
 // See: https://loops.so/docs/api-reference/send-event
 func (c *Client) SendEvent(ctx context.Context, event *Event) error {
-	if event.Email == nil && event.UserId == nil {
+	if event.Email == nil && event.UserID == nil {
 		return errors.New("event must contain either an email or a userId")
 	}
-	if event.Email != nil && event.UserId != nil {
+	if event.Email != nil && event.UserID != nil {
 		return errors.New("event must contain either an email or a userId, but not both")
 	}
 	req, err := newRequestWithBody(c, ctx, http.MethodPost, "/events/send", event)
@@ -222,7 +222,7 @@ func (c *Client) SendTransactionalEmail(ctx context.Context, transactional *Tran
 
 // GetCustomFields retrieves a list of an account's custom contact properties.
 func (c *Client) GetCustomFields(ctx context.Context) ([]*CustomField, error) {
-	req, err := newRequestWithQueryParams(c, ctx, http.MethodGet, "/contacts/customFields", nil)
+	req, err := newGetRequestWithQueryParams(c, ctx, "/contacts/customFields", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -233,19 +233,19 @@ func (c *Client) GetCustomFields(ctx context.Context) ([]*CustomField, error) {
 	return customFields, nil
 }
 
-// TestApiKey tests that an API key is valid.
+// TestAPIKey tests that an API key is valid.
 // See: https://loops.so/docs/api-reference/api-key
-func (c *Client) TestApiKey(ctx context.Context) (*ApiKeyInfo, error) {
-	req, err := newRequestWithQueryParams(c, ctx, http.MethodGet, "/api-key", nil)
+func (c *Client) TestAPIKey(ctx context.Context) (*APIKeyInfo, error) {
+	req, err := newGetRequestWithQueryParams(c, ctx, "/api-key", nil)
 	if err != nil {
 		return nil, err
 	}
 
-	return sendRequest[*ApiKeyInfo](c, req)
+	return sendRequest[*APIKeyInfo](c, req)
 }
 
-func newRequestWithQueryParams(c *Client, ctx context.Context, method, path string, queryParams url.Values) (*http.Request, error) {
-	req, err := newRequestWithBody[Contact](c, ctx, method, path, nil)
+func newGetRequestWithQueryParams(c *Client, ctx context.Context, path string, queryParams url.Values) (*http.Request, error) {
+	req, err := newRequestWithBody[Contact](c, ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, err
 	}

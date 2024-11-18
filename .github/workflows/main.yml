@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
+    branches: ["**"]
+
+permissions:
+  contents: read # for golangci-lint-action
+
+jobs:
+  tests:
+    name: Run tests
+    strategy:
+      matrix:
+        os: [Ubuntu]
+        go-version: ["1.23.x"]
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Install dependencies
+        run: |
+          go get ./...
+          go install github.com/jstemmer/go-junit-report@latest
+      - name: Build
+        run: go build -v ./...
+      - name: Run Tests
+        run: go test -v ./... | go-junit-report -set-exit-code > test-report.xml
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "test-report.xml"
+        if: always()
+      - name: Lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: v1.62.0
