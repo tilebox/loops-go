@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "db8ab2e6459cd043",
+      "ID": "7b58e36ca41e99b2",
       "Request": {
         "Method": "GET",
         "URL": "https://app.loops.so/api/v1/contacts/find?userId=user_123",
@@ -72,7 +72,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "8e48a2c309a65a8c-VIE"
+            "8e48e21068c35afd-VIE"
           ],
           "Content-Encoding": [
             "gzip"
@@ -84,10 +84,10 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Mon, 18 Nov 2024 14:26:29 GMT"
+            "Mon, 18 Nov 2024 15:09:42 GMT"
           ],
           "Etag": [
-            "W/\"16csp7dtxqa5f\""
+            "W/\"xtzfail1ta65\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -117,10 +117,10 @@
             "BYPASS"
           ],
           "X-Vercel-Id": [
-            "fra1::iad1::jkf78-1731939989009-51c0dadb1477"
+            "fra1::iad1::sqgz4-1731942581847-7210d258c83c"
           ]
         },
-        "Body": "H4sIAAAAAAAAAzzOwQrCMBAE0H+ZcyqtLRRy0pMIIh70JCJpu7aRpqnZBKWl/y5B8LZvYJi9ztANJGqTD0VpuzLN0m70haF2ml7h6SFARukeEgO9E0/sk+gNfZQZe1rV1kDgoR37ozIEiTNxrPXqn1yYHATYBldHb0/7yFBx7XRFDaR3gQQCk9s5G0ZI4Md9/C4e92ydQyBu66E9aPYMOS/L7QsAAP//AwCgREeZwwAAAA=="
+        "Body": "H4sIAAAAAAAAAzyOTQtBQRhG/8uzHrpcC2ZFKSlJYiVp7nhpMh+3eWdckv+uoeye8yxO5/CCOUNCu9qPbiaraqirNK4nTXpq39EAAuSUsZDw1PUSceoVntJDudZSXwcHgYuJnNbKESR2xAkCVv2fPVOEAIccdeHZZlkwN6yjaegMmWImgcwUFzHkFhL44bLUlXEaDGsI6OBa5Z/bYItoTneyof3aS5Xx15XhxJCv9/v4AQAA//8DABnyOWXdAAAA"
       }
     }
   ]

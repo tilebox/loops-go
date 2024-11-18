@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "28c142b3cdee20e4",
+      "ID": "024bf65228970fa0",
       "Request": {
         "Method": "POST",
         "URL": "https://app.loops.so/api/v1/contacts/delete",
@@ -75,7 +75,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "8e48a52b1a7a5c11-VIE"
+            "8e48e25f7eabc2f5-VIE"
           ],
           "Content-Length": [
             "45"
@@ -87,7 +87,7 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Mon, 18 Nov 2024 14:28:08 GMT"
+            "Mon, 18 Nov 2024 15:09:55 GMT"
           ],
           "Etag": [
             "\"ah8yi3hmwo19\""
@@ -123,7 +123,7 @@
             "MISS"
           ],
           "X-Vercel-Id": [
-            "fra1::iad1::6vtpk-1731940087677-5b958085fa1a"
+            "fra1::iad1::tlxlc-1731942594542-0551c093e4b8"
           ]
         },
         "Body": "eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiQ29udGFjdCBkZWxldGVkLiJ9"

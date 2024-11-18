@@ -1,5 +1,10 @@
 package loops
 
+import (
+	"encoding/json"
+	"errors"
+)
+
 // String returns a pointer to the string value passed in.
 func String(v string) *string {
 	return &v
@@ -24,7 +29,109 @@ type Contact struct {
 	// A unique user ID (for example, from an external application).
 	UserID *string `json:"userId,omitempty"`
 	// Mailing lists the contact is subscribed to.
-	MailingLists map[string]interface{} `json:"mailingLists,omitempty"`
+	MailingLists map[string]bool `json:"mailingLists,omitempty"`
+	// Custom properties for the contact.
+	CustomProperties map[string]interface{} `json:"-"` // there is no "customProperties", we need to inline add them to the json
+}
+
+// MarshalJSON overrides the default json marshaller to add custom properties inline to the root object
+func (c *Contact) MarshalJSON() ([]byte, error) {
+	data := map[string]interface{}{
+		"id":         c.ID,
+		"email":      c.Email,
+		"subscribed": c.Subscribed,
+	}
+	if c.FirstName != nil {
+		data["firstName"] = *c.FirstName
+	}
+	if c.LastName != nil {
+		data["lastName"] = *c.LastName
+	}
+	if c.Source != nil {
+		data["source"] = *c.Source
+	}
+	if c.UserGroup != nil {
+		data["userGroup"] = *c.UserGroup
+	}
+	if c.UserID != nil {
+		data["userId"] = *c.UserID
+	}
+	if c.MailingLists != nil {
+		data["mailingLists"] = c.MailingLists
+	}
+	for k, v := range c.CustomProperties {
+		data[k] = v
+	}
+	return json.Marshal(data)
+}
+
+// UnmarshalJSON overrides the default json unmarshaller to add custom properties inline to the root object
+func (c *Contact) UnmarshalJSON(data []byte) error {
+	values := map[string]interface{}{}
+	if err := json.Unmarshal(data, &values); err != nil {
+		return err
+	}
+
+	if id, ok := values["id"].(string); ok {
+		c.ID = id
+		delete(values, "id")
+	} else {
+		return errors.New("missing or invalid 'id' field")
+	}
+
+	if email, ok := values["email"].(string); ok {
+		c.Email = email
+		delete(values, "email")
+	} else {
+		return errors.New("missing or invalid 'email' field")
+	}
+
+	if subscribed, ok := values["subscribed"].(bool); ok {
+		c.Subscribed = subscribed
+		delete(values, "subscribed")
+	} else {
+		return errors.New("missing or invalid 'subscribed' field")
+	}
+
+	if firstName, ok := values["firstName"].(string); ok {
+		c.FirstName = &firstName
+		delete(values, "firstName")
+	}
+
+	if lastName, ok := values["lastName"].(string); ok {
+		c.LastName = &lastName
+		delete(values, "lastName")
+	}
+
+	if source, ok := values["source"].(string); ok {
+		c.Source = &source
+		delete(values, "source")
+	}
+
+	if userGroup, ok := values["userGroup"].(string); ok {
+		c.UserGroup = &userGroup
+		delete(values, "userGroup")
+	}
+
+	if userID, ok := values["userId"].(string); ok {
+		c.UserID = &userID
+		delete(values, "userId")
+	}
+
+	mailingLists, ok := values["mailingLists"].(map[string]interface{})
+	if ok {
+		c.MailingLists = make(map[string]bool)
+		for k, v := range mailingLists {
+			c.MailingLists[k] = v.(bool)
+		}
+		delete(values, "mailingLists")
+	}
+
+	c.CustomProperties = make(map[string]interface{})
+	for k, v := range values {
+		c.CustomProperties[k] = v
+	}
+	return nil
 }
 
 type ContactIdentifier struct {
