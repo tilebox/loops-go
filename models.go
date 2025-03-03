@@ -171,7 +171,7 @@ type TransactionalEmail struct {
 	Email string `json:"email"`
 	// Create a contact in your audience using the provided email address (if one doesn't already exist).
 	AddToAudience *bool `json:"addToAudience,omitempty"`
-	// Data variables as defined by the transational email template.
+	// Data variables as defined by the transitional email template.
 	DataVariables *map[string]interface{} `json:"dataVariables,omitempty"`
 	// File(s) to be sent along with the email message.
 	Attachments *[]EmailAttachment `json:"attachments,omitempty"`
