@@ -7,9 +7,6 @@ on:
   merge_group:
     branches: ["**"]
 
-permissions:
-  contents: read # for golangci-lint-action
-
 jobs:
   tests:
     name: Run tests
@@ -18,6 +15,8 @@ jobs:
         os: [Ubuntu]
         go-version: ["1.24.x"]
     runs-on: ${{ matrix.os }}-latest
+    permissions:
+      contents: read # for golangci-lint-action
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,6 +39,6 @@ jobs:
           paths: "test-report.xml"
         if: always()
       - name: Lint
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v7
         with:
-          version: v1.64.6
+          version: v2.0.1

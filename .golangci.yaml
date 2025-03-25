@@ -1,37 +1,10 @@
 # yaml-language-server: $schema=https://golangci-lint.run/jsonschema/golangci.jsonschema.json
-# Inspired from: (MIT license) https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322
 ---
-run:
-  timeout: '5m'
-linters-settings:
-  gosec:
-    excludes:
-      - G601 # Not relevant anymore with Go 1.22 and later
-      - G404 # Use of weak random number generator (math/rand instead of crypto/rand)
-  govet:
-    enable-all: true
-    disable:
-      - fieldalignment # too strict
-      - shadow # too strict
-  perfsprint:
-    strconcat: false
-  revive:
-    rules:
-      - name: var-naming
-        arguments:
-          - []
-          - []
-          - - skipPackageNameChecks: true
-  stylecheck:
-    checks: ["all", "-ST1003"]
-  tagalign:
-    order: ["flag", "env", "default", "secret", "toml", "json", "validate", "global", "help"]
-    strict: false
+version: "2"
 linters:
   enable: # list taken from https://golangci-lint.run/usage/linters/ - last updated 2025-02-14 for v1.64.5
     # enabled by default, but list them here to be explicit
     - errcheck
-    - gosimple
     - govet
     - ineffassign
     - staticcheck
@@ -63,7 +36,6 @@ linters:
     - forbidigo # forbids identifiers
     #- forcetypeassert # finds forced type assertions
     #- funlen # Tool for detection of long functions
-    - gci # Checks if code and import statements are formatted, with additional rules.
     #- ginkgolinter # Enforces the Ginkgo testing package guidelines.
     - gocheckcompilerdirectives # validates go compiler directive comments (//go:)
     #- gochecknoglobals # checks that no global variables exist
@@ -75,10 +47,7 @@ linters:
     #- gocyclo # Computes and checks the cyclomatic complexity of functions
     #- godot # Check if comments end in a period
     #- godox # Tool for detection of FIXME, TODO and other comment keywords
-    - gofmt # Checks if the code is formatted according to 'gofmt' command
-    - gofumpt # Checks if code and import statements are formatted, with additional rules
     #- goheader # Checks is file header matches to pattern
-    - goimports # Checks if the code and import statements are formatted according to the 'goimports' command.
     - gomoddirectives # manages the use of 'replace', 'retract', and 'excludes' directives in go.mod
     - gomodguard # allow and block lists linter for direct Go module dependencies. This is different from depguard where there are different block types for example version constraints and module recommendations
     - goprintffuncname # checks that printf-like functions are named with f at the end
@@ -123,7 +92,6 @@ linters:
     - sloglint # ensure consistent code style when using log/slog
     - spancheck # checks for mistakes with OpenTelemetry/Census spans
     - sqlclosecheck # checks that sql.Rows and sql.Stmt are closed
-    - stylecheck # is a replacement for golint
     - tagalign # checks that struct tags are well aligned
     #- tagliatelle # Checks the struct tags.
     #- testableexamples # checks if examples are testable (have an expected output)
@@ -142,10 +110,58 @@ linters:
     #- wsl # whitespace linter - add or remove empty lines
     #- zerologlint # checks wrong usage of zerolog
     #- tenv # deprecated in favor of usetesting
-issues:
-  exclude-rules:
-    # Exclude some linters from running on tests files.
-    - path: '_test.go'
-      linters:
-        - containedctx
-        - dogsled
+  settings:
+    gosec:
+      excludes:
+        - G601 # Not relevant anymore with Go 1.22 and later
+        - G404 # Use of weak random number generator (math/rand instead of crypto/rand)
+    govet:
+      enable-all: true
+      disable:
+        - fieldalignment # too strict
+        - shadow # too strict
+    perfsprint:
+      strconcat: false
+    revive:
+      rules:
+        - name: var-naming
+          arguments:
+            - []
+            - []
+            - - skipPackageNameChecks: true
+    staticcheck:
+      checks:
+        - all
+        - -ST1003 # should not use underscores in package names
+    tagalign:
+      order:
+        - flag
+        - env
+        - default
+        - secret
+        - toml
+        - json
+        - validate
+        - global
+        - help
+      strict: false
+  exclusions:
+    generated: strict
+    warn-unused: true
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      # Exclude some linters from running on tests files.
+      - linters:
+          - containedctx
+          - dogsled
+        path: _test.go
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
