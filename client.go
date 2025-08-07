@@ -313,7 +313,7 @@ func sendRequest[T any](c *Client, req *http.Request) (T, error) {
 	// sometimes loops returns an "error": message, so check if that's the case and if so, return the error
 	errorMsg := &errorResponse{}
 	err = json.Unmarshal(body, &errorMsg)
-	if err == nil {
+	if err == nil && errorMsg.Error != "" {
 		return none, errors.New(errorMsg.Error)
 	}
 
