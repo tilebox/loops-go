@@ -26,7 +26,7 @@ func main() {
 		LastName:   loops.String("Armstrong"),
 		Subscribed: true,
 		// custom user defined properties for contacts
-		Properties: map[string]interface{}{
+		Properties: map[string]any{
 			"role": "Astronaut",
 		},
 	})
