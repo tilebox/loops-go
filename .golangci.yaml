@@ -2,7 +2,7 @@
 ---
 version: "2"
 linters:
-  enable: # list taken from https://golangci-lint.run/usage/linters/ - last updated 2025-02-14 for v1.64.5
+  enable: # list taken from https://golangci-lint.run/usage/linters/ - last updated 2026-01-09 for v2.8.0
     # enabled by default, but list them here to be explicit
     - errcheck
     - govet
@@ -10,6 +10,7 @@ linters:
     - staticcheck
     - unused
     # other linters (that would be disabled by default)
+    - arangolint # linter for arangoDB
     - asasalint # checks for pass []any as any in variadic func(...any)
     - asciicheck # checks that your code does not contain non-ASCII identifiers
     - bidichk # checks for dangerous unicode character sequences
@@ -25,6 +26,7 @@ linters:
     #- dupl # tool for code clone detection
     - dupword # checks for duplicate words in the source code
     - durationcheck # checks for two durations multiplied together
+    - embeddedstructfieldcheck # embedded types should be at the top of a struct
     #- err113 # checks the errors handling expressions
     - errchkjson # checks types passed to the json encoding functions.
     - errname # checks that sentinel errors are prefixed with the Err and error types are suffixed with the Error
@@ -35,6 +37,7 @@ linters:
     - fatcontext # finds nested context.WithValue calls in loops
     - forbidigo # forbids identifiers
     #- forcetypeassert # finds forced type assertions
+    - funcorder # checks that functions are in the right order
     #- funlen # Tool for detection of long functions
     #- ginkgolinter # Enforces the Ginkgo testing package guidelines.
     - gocheckcompilerdirectives # validates go compiler directive comments (//go:)
@@ -45,6 +48,7 @@ linters:
     - goconst # finds repeated strings that could be replaced by a constant
     - gocritic # provides diagnostics that check for bugs, performance and style issues
     #- gocyclo # Computes and checks the cyclomatic complexity of functions
+    - godoclint # Checks golang docs best practices (godoc)
     #- godot # Check if comments end in a period
     #- godox # Tool for detection of FIXME, TODO and other comment keywords
     #- goheader # Checks is file header matches to pattern
@@ -59,6 +63,7 @@ linters:
     #- inamedparam # Reports interfaces with unnamed method parameters.
     - interfacebloat # Checks the number of methods in an interface
     - intrange # finds places where for loops could make use of an integer range
+    - iotamixing # checks that iota is not mixed with other constants
     #- ireturn # Accept Interfaces, Return Concrete Types
     #- lll # Reports long lines
     - loggercheck # checks key value pairs for common logger libraries (kitlog,klog,logr,zap)
@@ -67,6 +72,7 @@ linters:
     - mirror # reports wrong mirror patterns of bytes/strings usage
     - misspell # finds commonly misspelled English words in comments
     #- mnd # Detects magic numbers
+    - modernize # reports wrong mirror patterns of bytes/strings usage
     - musttag # enforces field tags in (un)marshaled structs
     - nakedret # finds naked returns in functions greater than a specified function length
     #- nestif # Reports deeply nested if statements
@@ -74,13 +80,13 @@ linters:
     - nilnesserr # Reports constructs that checks for err != nil, but returns a different nil value error.
     - nilnil # checks that there is no simultaneous return of nil error and an invalid value
     #- nlreturn # Checks for a new line before return and branch statements to increase code clarity
+    #- noinlineerr # Disallows inline error handling
     - noctx # finds sending http request without context.Context
     - nolintlint # reports ill-formed or insufficient nolint directives
     - nonamedreturns # reports all named returns
     - nosprintfhostport # checks for misuse of Sprintf to construct a host with port in a URL
-    - perfsprint # checks that fmt.Sprintf can be replaced with a faster alternative
     #- paralleltest # detects missing usage of t.Parallel() method in your Go test
-    - perfsprint # Checks that fmt.Sprintf can be replaced with a faster alternative.
+    - perfsprint # checks that fmt.Sprintf can be replaced with a faster alternative
     - prealloc # finds slice declarations that could potentially be preallocated
     - predeclared # finds code that shadows one of Go's predeclared identifiers
     - promlinter # checks Prometheus metrics naming via promlint
@@ -101,15 +107,16 @@ linters:
     - tparallel # detects inappropriate usage of t.Parallel() method in your Go test codes
     - unconvert # removes unnecessary type conversions
     - unparam # reports unused function parameters
+    - unqueryvet # sql linter disallowing select *
     - usestdlibvars # detects the possibility to use variables/constants from the Go standard library
     - usetesting # reports uses of functions with replacement inside the testing package
     #- varnamelen # checks that the length of a variable's name matches its scope
     - wastedassign # finds wasted assignment statements
     - whitespace # detects leading and trailing whitespace
     #- wrapcheck # Checks that errors returned from external packages are wrapped
-    #- wsl # whitespace linter - add or remove empty lines
+    #- wsl # (deprecated)
+    #- wsl_v5 # whitespace linter - add or remove empty lines
     #- zerologlint # checks wrong usage of zerolog
-    #- tenv # deprecated in favor of usetesting
   settings:
     gosec:
       excludes:
@@ -147,7 +154,7 @@ linters:
       strict: false
   exclusions:
     generated: strict
-    warn-unused: true
+    warn-unused: false
     presets:
       - comments
       - common-false-positives

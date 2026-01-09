@@ -13,16 +13,16 @@ jobs:
     strategy:
       matrix:
         os: [Ubuntu]
-        go-version: ["1.24.x"]
+        go-version: ["1.25.x"]
     runs-on: ${{ matrix.os }}-latest
     permissions:
       contents: read # for golangci-lint-action
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           lfs: true
       - name: Setup Go ${{ matrix.go-version }}
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: ${{ matrix.go-version }}
       - name: Install dependencies
@@ -39,6 +39,6 @@ jobs:
           paths: "test-report.xml"
         if: always()
       - name: Lint
-        uses: golangci/golangci-lint-action@v7
+        uses: golangci/golangci-lint-action@v9
         with:
-          version: v2.0.1
+          version: v2.8.0

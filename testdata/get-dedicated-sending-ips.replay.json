@@ -30,16 +30,13 @@
   },
   "Entries": [
     {
-      "ID": "6a36d052f1687fbc",
+      "ID": "59ee636d1ddfbe1f",
       "Request": {
-        "Method": "PUT",
-        "URL": "https://app.loops.so/api/v1/contacts/update",
+        "Method": "GET",
+        "URL": "https://app.loops.so/api/v1/dedicated-sending-ips",
         "Header": {
           "Accept-Encoding": [
             "gzip"
-          ],
-          "Content-Length": [
-            "120"
           ],
           "User-Agent": [
             "Go-http-client/1.1"
@@ -47,7 +44,7 @@
         },
         "MediaType": "application/json",
         "BodyParts": [
-          "eyJlbWFpbCI6Im5ldy10ZXN0LW1haWxAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IiwiaWQiOiIiLCJsYXN0TmFtZSI6IlVzZXIiLCJzdWJzY3JpYmVkIjp0cnVlLCJ1c2VySWQiOiJ1c2VyXzEyMyJ9"
+          ""
         ]
       },
       "Response": {
@@ -72,7 +69,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb421ff8f646cb4-VIE"
+            "9bb442e64f81b654-VIE"
           ],
           "Content-Encoding": [
             "gzip"
@@ -81,10 +78,10 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:03:06 GMT"
+            "Fri, 09 Jan 2026 13:25:34 GMT"
           ],
           "Etag": [
-            "W/\"v3jrx4hjv1d\""
+            "W/\"ufpu51e7bw2c\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -114,7 +111,7 @@
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/wExAM7/eyJzdWNjZXNzIjp0cnVlLCJpZCI6ImNtazZ2eXViMDBjN2IwaTA0ZGxyZWdlaXQifdgt8TAxAAAA"
+        "Body": "H4sIAAAAAAAA/xWMwQ3AMAgDd+FdWdghJMxSdf81Cj/f2fJrYkIimAX6scd2QOFYBXk0nxkssAWn76zNds15RwRIx52Dsu8HI/5UoFQAAAA="
       }
     }
   ]

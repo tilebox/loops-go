@@ -3,11 +3,14 @@ package main
 import (
 	"context"
 	"log/slog"
+	"os"
 
 	"github.com/tilebox/loops-go"
 )
 
 func main() {
+	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug})))
+
 	client, err := loops.NewClient(loops.WithAPIKey("YOUR_LOOPS_API_KEY"))
 	if err != nil {
 		slog.Error("failed to create client", slog.Any("error", err.Error()))
@@ -22,7 +25,8 @@ func main() {
 		FirstName:  loops.String("Neil"),
 		LastName:   loops.String("Armstrong"),
 		Subscribed: true,
-		CustomProperties: map[string]interface{}{ // custom user defined properties for contacts
+		// custom user defined properties for contacts
+		Properties: map[string]any{
 			"role": "Astronaut",
 		},
 	})

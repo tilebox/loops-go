@@ -1,0 +1,64 @@
+{
+  "Initial": null,
+  "Version": "0.2",
+  "Converter": {
+    "ScrubBody": null,
+    "ClearHeaders": [
+      "^X-Goog-.*Encryption-Key$"
+    ],
+    "RemoveRequestHeaders": [
+      "^Authorization$",
+      "^Proxy-Authorization$",
+      "^Connection$",
+      "^Content-Type$",
+      "^Date$",
+      "^Host$",
+      "^Transfer-Encoding$",
+      "^Via$",
+      "^X-Forwarded-.*$",
+      "^X-Cloud-Trace-Context$",
+      "^X-Goog-Api-Client$",
+      "^X-Google-.*$",
+      "^X-Gfe-.*$"
+    ],
+    "RemoveResponseHeaders": [
+      "^X-Google-.*$",
+      "^X-Gfe-.*$"
+    ],
+    "ClearParams": null,
+    "RemoveParams": null
+  },
+  "Entries": [
+    {
+      "ID": "get-contact-properties-1",
+      "Request": {
+        "Method": "GET",
+        "URL": "https://app.loops.so/api/v1/contacts/properties?list=custom",
+        "Header": {
+          "Accept-Encoding": [
+            "gzip"
+          ],
+          "User-Agent": [
+            "Go-http-client/1.1"
+          ]
+        },
+        "MediaType": "application/json",
+        "BodyParts": [
+          ""
+        ]
+      },
+      "Response": {
+        "StatusCode": 200,
+        "Proto": "HTTP/1.1",
+        "ProtoMajor": 1,
+        "ProtoMinor": 1,
+        "Header": {
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ]
+        },
+        "Body": "W3sia2V5IjoiZmF2b3JpdGVDb2xvciIsImxhYmVsIjoiRmF2b3JpdGUgY29sb3IiLCJ0eXBlIjoic3RyaW5nIn0seyJrZXkiOiJwbGFuTmFtZSIsImxhYmVsIjoiUGxhbiBuYW1lIiwidHlwZSI6InN0cmluZyJ9XQ=="
+      }
+    }
+  ]
+}

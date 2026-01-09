@@ -51,12 +51,12 @@ func TestCreateContact(t *testing.T) {
 		LastName:   String("User"),
 		UserID:     String("user_123"),
 		Subscribed: true,
-		CustomProperties: map[string]interface{}{
+		Properties: map[string]any{
 			"companyRole": "Developer",
 		},
 	})
 	require.NoError(t, err)
-	assert.Equal(t, "cm3n4kiua02c0t839btycnwe1", contactID)
+	assert.Equal(t, "cmk6vyub00c7b0i04dlregeit", contactID)
 }
 
 func TestUpdateContact(t *testing.T) {
@@ -69,7 +69,7 @@ func TestUpdateContact(t *testing.T) {
 		Subscribed: true,
 	})
 	require.NoError(t, err)
-	assert.Equal(t, "cm3n4kiua02c0t839btycnwe1", contactID)
+	assert.Equal(t, "cmk6vyub00c7b0i04dlregeit", contactID)
 }
 
 func TestFindContact(t *testing.T) {
@@ -78,13 +78,14 @@ func TestFindContact(t *testing.T) {
 		Email: String("new-test-mail@example.com"),
 	})
 	require.NoError(t, err)
-	assert.Equal(t, "cm3n4kiua02c0t839btycnwe1", contact.ID)
+	assert.Equal(t, "cmk6vyub00c7b0i04dlregeit", contact.ID)
 	assert.Equal(t, "new-test-mail@example.com", contact.Email)
 	assert.Equal(t, "Test", *contact.FirstName)
 	assert.Equal(t, "User", *contact.LastName)
 	assert.Equal(t, "user_123", *contact.UserID)
+	assert.Nil(t, contact.OptInStatus)
 
-	companyRole, ok := contact.CustomProperties["companyRole"]
+	companyRole, ok := contact.Properties["companyRole"]
 	assert.True(t, ok)
 	companyRoleStr, ok := companyRole.(string)
 	assert.True(t, ok)
@@ -99,13 +100,14 @@ func TestFindContactByID(t *testing.T) {
 		UserID: String("user_123"),
 	})
 	require.NoError(t, err)
-	assert.Equal(t, "cm3n4kiua02c0t839btycnwe1", contact.ID)
+	assert.Equal(t, "cmk6vyub00c7b0i04dlregeit", contact.ID)
 	assert.Equal(t, "new-test-mail@example.com", contact.Email)
 	assert.Equal(t, "Test", *contact.FirstName)
 	assert.Equal(t, "User", *contact.LastName)
 	assert.Equal(t, "user_123", *contact.UserID)
+	assert.Nil(t, contact.OptInStatus)
 
-	companyRole, ok := contact.CustomProperties["companyRole"]
+	companyRole, ok := contact.Properties["companyRole"]
 	assert.True(t, ok)
 	companyRoleStr, ok := companyRole.(string)
 	assert.True(t, ok)
@@ -123,6 +125,36 @@ func TestFindContactNotFound(t *testing.T) {
 	assert.Contains(t, err.Error(), "contact not found")
 }
 
+func TestGetContactProperties(t *testing.T) {
+	client := newReplayTestClient(t, "get-contact-allProperties.replay.json")
+	allProperties, err := client.GetContactProperties(context.Background(), ContactPropertyListOptions{})
+	require.NoError(t, err)
+	require.Len(t, allProperties, 14)
+	assert.Equal(t, "firstName", allProperties[0].Key)
+	assert.Equal(t, "First Name", allProperties[0].Label)
+	assert.Equal(t, "string", allProperties[0].Type)
+	assert.Equal(t, "lastName", allProperties[1].Key)
+
+	customProperties, err := client.GetContactProperties(context.Background(), ContactPropertyListOptions{
+		List: ContactPropertyTypeCustom,
+	})
+	require.NoError(t, err)
+	require.Len(t, customProperties, 2)
+	assert.Equal(t, "heardAboutChannel", customProperties[0].Key)
+	assert.Equal(t, "Heard About Channel", customProperties[0].Label)
+	assert.Equal(t, "string", customProperties[0].Type)
+	assert.Equal(t, "companyRole", customProperties[1].Key)
+}
+
+func TestCreateContactProperty(t *testing.T) {
+	client := newReplayTestClient(t, "create-contact-property.replay.json")
+	err := client.CreateContactProperty(context.Background(), &ContactPropertyCreate{
+		Name: "planName",
+		Type: "string",
+	})
+	require.NoError(t, err)
+}
+
 func TestDeleteContact(t *testing.T) {
 	client := newReplayTestClient(t, "delete-contact.replay.json")
 	err := client.DeleteContact(context.Background(), &ContactIdentifier{
@@ -135,10 +167,13 @@ func TestGetMailingLists(t *testing.T) {
 	client := newReplayTestClient(t, "get-mailing-lists.replay.json")
 	mailingLists, err := client.GetMailingLists(context.Background())
 	require.NoError(t, err)
-	require.Len(t, mailingLists, 1)
+	require.Len(t, mailingLists, 2)
 	assert.Equal(t, "cm3n274xf027h0mi33t4qhrdg", mailingLists[0].ID)
 	assert.Equal(t, "Newsletter", mailingLists[0].Name)
 	assert.True(t, mailingLists[0].IsPublic)
+	assert.Equal(t, "cm6gb0ku002d00kiig98e153r", mailingLists[1].ID)
+	assert.Equal(t, "Product Update", mailingLists[1].Name)
+	assert.True(t, mailingLists[1].IsPublic)
 }
 
 func TestSendEvent(t *testing.T) {
@@ -146,7 +181,7 @@ func TestSendEvent(t *testing.T) {
 	err := client.SendEvent(context.Background(), &Event{
 		Email:     String("neil.armstrong@moon.space"),
 		EventName: "joinedMission",
-		EventProperties: &map[string]interface{}{
+		EventProperties: &map[string]any{
 			"mission": "Apollo 11",
 		},
 	})
@@ -158,21 +193,36 @@ func TestSendTransactionalEmail(t *testing.T) {
 	err := client.SendTransactionalEmail(context.Background(), &TransactionalEmail{
 		TransactionalID: "cm3n2vjux00cgeyeflew9ly2w",
 		Email:           "test@example.com",
-		DataVariables: &map[string]interface{}{
+		DataVariables: &map[string]any{
 			"name": "Mr. Test",
 		},
 	})
 	require.NoError(t, err)
 }
 
-func TestGetCustomFields(t *testing.T) {
-	client := newReplayTestClient(t, "get-custom-fields.replay.json")
-	customFields, err := client.GetCustomFields(context.Background())
+func TestGetDedicatedSendingIPs(t *testing.T) {
+	client := newReplayTestClient(t, "get-dedicated-sending-ips.replay.json")
+	ips, err := client.GetDedicatedSendingIPs(context.Background())
 	require.NoError(t, err)
-	require.Len(t, customFields, 1)
-	assert.Equal(t, "role", customFields[0].Key)
-	assert.Equal(t, "Role", customFields[0].Label)
-	assert.Equal(t, "string", customFields[0].Type)
+	require.Len(t, ips, 5)
+	assert.Contains(t, ips[0], "221.169")
+}
+
+func TestListTransactionalEmails(t *testing.T) {
+	client := newReplayTestClient(t, "list-transactional-emails.replay.json")
+	response, err := client.ListTransactionalEmails(context.Background(), ListTransactionalEmailsOptions{})
+	require.NoError(t, err)
+	assert.Equal(t, 2, response.Pagination.TotalResults)
+	assert.Equal(t, 2, response.Pagination.ReturnedResults)
+	assert.Equal(t, 20, response.Pagination.PerPage)
+	assert.Equal(t, 1, response.Pagination.TotalPages)
+	assert.Empty(t, response.Pagination.NextCursor)
+	assert.Empty(t, response.Pagination.NextPage)
+	require.Len(t, response.Data, 2)
+	assert.Equal(t, "cm3n2vjux00cgeyeflew9ly2w", response.Data[0].ID)
+	assert.Equal(t, "Blank transactional", response.Data[0].Name)
+	assert.Equal(t, "2024-11-18T14:32:35.586Z", response.Data[0].LastUpdated)
+	assert.Equal(t, []string{"name"}, response.Data[0].DataVariables)
 }
 
 func TestAPIKey(t *testing.T) {
