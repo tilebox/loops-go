@@ -3,12 +3,22 @@ package loops
 import (
 	"encoding/json"
 	"errors"
+	"maps"
 )
 
 // String returns a pointer to the string value passed in.
 func String(v string) *string {
 	return &v
 }
+
+// OptInStatus represents the double opt-in status of a contact.
+type OptInStatus string
+
+const (
+	OptInStatusAccepted OptInStatus = "accepted"
+	OptInStatusPending  OptInStatus = "pending"
+	OptInStatusRejected OptInStatus = "rejected"
+)
 
 // Contact defines model for Contact.
 type Contact struct {
@@ -30,13 +40,15 @@ type Contact struct {
 	UserID *string `json:"userId,omitempty"`
 	// Mailing lists the contact is subscribed to.
 	MailingLists map[string]bool `json:"mailingLists,omitempty"`
+	// Double opt-in status.
+	OptInStatus *OptInStatus `json:"optInStatus,omitempty"`
 	// Custom properties for the contact.
-	CustomProperties map[string]interface{} `json:"-"` // there is no "customProperties", we need to inline add them to the json
+	Properties map[string]any `json:"-"` // there is no "customProperties", we need to inline add them to the json
 }
 
 // MarshalJSON overrides the default json marshaller to add custom properties inline to the root object
 func (c *Contact) MarshalJSON() ([]byte, error) {
-	data := map[string]interface{}{
+	data := map[string]any{
 		"id":         c.ID,
 		"email":      c.Email,
 		"subscribed": c.Subscribed,
@@ -59,15 +71,16 @@ func (c *Contact) MarshalJSON() ([]byte, error) {
 	if c.MailingLists != nil {
 		data["mailingLists"] = c.MailingLists
 	}
-	for k, v := range c.CustomProperties {
-		data[k] = v
+	if c.OptInStatus != nil {
+		data["optInStatus"] = *c.OptInStatus
 	}
+	maps.Copy(data, c.Properties)
 	return json.Marshal(data)
 }
 
 // UnmarshalJSON overrides the default json unmarshaller to add custom properties inline to the root object
 func (c *Contact) UnmarshalJSON(data []byte) error {
-	values := map[string]interface{}{}
+	values := map[string]any{}
 	if err := json.Unmarshal(data, &values); err != nil {
 		return err
 	}
@@ -118,7 +131,7 @@ func (c *Contact) UnmarshalJSON(data []byte) error {
 		delete(values, "userId")
 	}
 
-	mailingLists, ok := values["mailingLists"].(map[string]interface{})
+	mailingLists, ok := values["mailingLists"].(map[string]any)
 	if ok {
 		c.MailingLists = make(map[string]bool)
 		for k, v := range mailingLists {
@@ -127,10 +140,14 @@ func (c *Contact) UnmarshalJSON(data []byte) error {
 		delete(values, "mailingLists")
 	}
 
-	c.CustomProperties = make(map[string]interface{})
-	for k, v := range values {
-		c.CustomProperties[k] = v
+	if optInStatus, ok := values["optInStatus"].(string); ok {
+		status := OptInStatus(optInStatus)
+		c.OptInStatus = &status
+		delete(values, "optInStatus")
 	}
+
+	c.Properties = make(map[string]any)
+	maps.Copy(c.Properties, values)
 	return nil
 }
 
@@ -139,11 +156,32 @@ type ContactIdentifier struct {
 	UserID *string `json:"userId,omitempty"`
 }
 
+type ContactProperty struct {
+	// The property's name key
+	Key string `json:"key"`
+	// The human-friendly label for this property
+	Label string `json:"label"`
+	// The type of property (one of string, number, boolean or date)
+	Type string `json:"type"`
+}
+
+// Deprecated: Use ContactProperty instead.
+type CustomField = ContactProperty
+
+type ContactPropertyCreate struct {
+	// The property's name key (must be in camelCase, like `planName`)
+	Name string `json:"name"`
+	// The type of property (one of string, number, boolean or date)
+	Type string `json:"type"`
+}
+
 type MailingList struct {
 	// The ID of the list.
 	ID string `json:"id"`
 	// The name of the list.
 	Name string `json:"name"`
+	// The description of the list.
+	Description string `json:"description"`
 	// Whether the list is public (true) or private (false).
 	// See: https://loops.so/docs/contacts/mailing-lists#list-visibility
 	IsPublic bool `json:"isPublic"`
@@ -157,11 +195,11 @@ type Event struct {
 	// The name of the event
 	EventName string `json:"eventName"`
 	// Properties to update the contact with, including custom properties.
-	ContactProperties map[string]interface{} `json:"contactProperties,omitempty"`
+	ContactProperties map[string]any `json:"contactProperties,omitempty"`
 	// Event properties, made available in emails triggered by the event.
-	EventProperties *map[string]interface{} `json:"eventProperties,omitempty"`
+	EventProperties *map[string]any `json:"eventProperties,omitempty"`
 	// An object of mailing list IDs and boolean subscription statuses.
-	MailingLists *map[string]interface{} `json:"mailingLists,omitempty"`
+	MailingLists *map[string]any `json:"mailingLists,omitempty"`
 }
 
 type TransactionalEmail struct {
@@ -172,7 +210,7 @@ type TransactionalEmail struct {
 	// Create a contact in your audience using the provided email address (if one doesn't already exist).
 	AddToAudience *bool `json:"addToAudience,omitempty"`
 	// Data variables as defined by the transitional email template.
-	DataVariables *map[string]interface{} `json:"dataVariables,omitempty"`
+	DataVariables *map[string]any `json:"dataVariables,omitempty"`
 	// File(s) to be sent along with the email message.
 	Attachments *[]EmailAttachment `json:"attachments,omitempty"`
 }
@@ -186,13 +224,35 @@ type EmailAttachment struct {
 	Data string `json:"data"`
 }
 
-type CustomField struct {
-	// The property's name key
-	Key string `json:"key"`
-	// The human-friendly label for this property
-	Label string `json:"label"`
-	// The type of property (one of string, number, boolean or date)
-	Type string `json:"type"`
+type TransactionalEmailInfo struct {
+	// The ID of the transactional email.
+	ID string `json:"id"`
+	// The name of the transactional email.
+	Name string `json:"name"`
+	// The last time the transactional email was updated.
+	LastUpdated string `json:"lastUpdated"`
+	// The data variables used in the transactional email.
+	DataVariables []string `json:"dataVariables"`
+}
+
+type TransactionalEmailList struct {
+	Data       []*TransactionalEmailInfo `json:"data"`
+	Pagination Pagination                `json:"pagination"`
+}
+
+type Pagination struct {
+	// Total results found.
+	TotalResults int `json:"totalResults"`
+	// The number of results returned in this response.
+	ReturnedResults int `json:"returnedResults"`
+	// The maximum number of results requested.
+	PerPage int `json:"perPage"`
+	// Total number of pages.
+	TotalPages int `json:"totalPages"`
+	// The next cursor (for retrieving the next page of results using the cursor parameter), or empty string if there are no further pages.
+	NextCursor string `json:"nextCursor,omitempty"`
+	// The next page (for retrieving the next page of results using the page parameter), or empty string if there are no further pages.
+	NextPage string `json:"nextPage,omitempty"`
 }
 
 type APIKeyInfo struct {
@@ -203,6 +263,10 @@ type APIKeyInfo struct {
 
 type errorResponse struct {
 	Error string `json:"error"`
+}
+
+type SuccessResponse struct {
+	Success bool `json:"success"`
 }
 
 type IDResponse struct {

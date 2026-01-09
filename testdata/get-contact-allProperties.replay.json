@@ -1,0 +1,203 @@
+{
+  "Initial": null,
+  "Version": "0.2",
+  "Converter": {
+    "ScrubBody": null,
+    "ClearHeaders": [
+      "^X-Goog-.*Encryption-Key$"
+    ],
+    "RemoveRequestHeaders": [
+      "^Authorization$",
+      "^Proxy-Authorization$",
+      "^Connection$",
+      "^Content-Type$",
+      "^Date$",
+      "^Host$",
+      "^Transfer-Encoding$",
+      "^Via$",
+      "^X-Forwarded-.*$",
+      "^X-Cloud-Trace-Context$",
+      "^X-Goog-Api-Client$",
+      "^X-Google-.*$",
+      "^X-Gfe-.*$"
+    ],
+    "RemoveResponseHeaders": [
+      "^X-Google-.*$",
+      "^X-Gfe-.*$"
+    ],
+    "ClearParams": null,
+    "RemoveParams": null
+  },
+  "Entries": [
+    {
+      "ID": "33d797cb0d2e846a",
+      "Request": {
+        "Method": "GET",
+        "URL": "https://app.loops.so/api/v1/contacts/properties",
+        "Header": {
+          "Accept-Encoding": [
+            "gzip"
+          ],
+          "User-Agent": [
+            "Go-http-client/1.1"
+          ]
+        },
+        "MediaType": "application/json",
+        "BodyParts": [
+          ""
+        ]
+      },
+      "Response": {
+        "StatusCode": 200,
+        "Proto": "HTTP/1.1",
+        "ProtoMajor": 1,
+        "ProtoMinor": 1,
+        "Header": {
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+          ],
+          "Access-Control-Allow-Methods": [
+            "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Cf-Ray": [
+            "9bb4513c6899a464-VIE"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Fri, 09 Jan 2026 13:35:21 GMT"
+          ],
+          "Etag": [
+            "W/\"ov7r6awch2my\""
+          ],
+          "Permissions-Policy": [
+            "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Ratelimit-Limit": [
+            "10"
+          ],
+          "X-Ratelimit-Remaining": [
+            "9"
+          ],
+          "X-Robots-Tag": [
+            "none"
+          ]
+        },
+        "Body": "H4sIAAAAAAAA/4WRy2rDMBBFf0VonS/oLoS+oGTR0FUpZiRNGxFZMnosTOm/V3ZkOkk9ZKlz5wjN1fu3POEo7+SnjSnvoUe5kQ4UusoeJiYazOOAlaUcrf+SP5tFdPDPe4HbGvZgHXHu25mb9yFjIvP7dubmu86EeqUnCkGcVRLGZ0OctwrETDglFZV0tAqpdqCwmSoEh+CJqiNCRrPNxNydmZhhM00lRDsiRLNVoeTdEbxHWuPTlIk5FH8pX1IP8YS50g6Kseg1XhS2GrP7TO09xlCG6wIXyL1Dh34AP77WC2kVZyoaZj8glHjx7MMC+LXr32Srwa1vvZZeL/3xC6SXXDs6AwAA"
+      }
+    },
+    {
+      "ID": "9dfeb47f40fc2993",
+      "Request": {
+        "Method": "GET",
+        "URL": "https://app.loops.so/api/v1/contacts/properties?list=custom",
+        "Header": {
+          "Accept-Encoding": [
+            "gzip"
+          ],
+          "User-Agent": [
+            "Go-http-client/1.1"
+          ]
+        },
+        "MediaType": "application/json",
+        "BodyParts": [
+          ""
+        ]
+      },
+      "Response": {
+        "StatusCode": 200,
+        "Proto": "HTTP/1.1",
+        "ProtoMajor": 1,
+        "ProtoMinor": 1,
+        "Header": {
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+          ],
+          "Access-Control-Allow-Methods": [
+            "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Cf-Ray": [
+            "9bb4513d4a51a464-VIE"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Fri, 09 Jan 2026 13:35:21 GMT"
+          ],
+          "Etag": [
+            "W/\"zayry85csl3s\""
+          ],
+          "Permissions-Policy": [
+            "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Ratelimit-Limit": [
+            "10"
+          ],
+          "X-Ratelimit-Remaining": [
+            "8"
+          ],
+          "X-Robots-Tag": [
+            "none"
+          ]
+        },
+        "Body": "H4sIAAAAAAAA/12MvQqAIBRGX0Xu7BO4hUtzazRoXTKyq5gNEr179kfR9ME5fKdeYcQEAgyq0BXaLVEaRYQWOFil8wooD8dOyV4bk8cs5xgG6mHjT6l1k1eUKmfx05AXZTf+nZsdYXNg1ogAAAA="
+      }
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strconv"
 )
 
 const defaultURL = "https://app.loops.so/api/v1/"
@@ -220,17 +221,92 @@ func (c *Client) SendTransactionalEmail(ctx context.Context, transactional *Tran
 	return err
 }
 
-// GetCustomFields retrieves a list of an account's custom contact properties.
-func (c *Client) GetCustomFields(ctx context.Context) ([]*CustomField, error) {
+type ContactPropertyType int
+
+const (
+	ContactPropertyTypeAll ContactPropertyType = iota
+	ContactPropertyTypeCustom
+)
+
+type ContactPropertyListOptions struct {
+	// Which contact properties to return (all or custom to only list your team's custom properties)
+	List ContactPropertyType
+}
+
+// GetContactProperties retrieves a list of an account's contact properties.
+// Use listType "all" (default) or "custom" to filter properties.
+// See: https://loops.so/docs/api-reference/list-contact-properties
+func (c *Client) GetContactProperties(ctx context.Context, opts ContactPropertyListOptions) ([]*ContactProperty, error) {
+	params := url.Values{}
+	if opts.List == ContactPropertyTypeCustom {
+		params.Add("list", "custom")
+	} else if opts.List != ContactPropertyTypeAll {
+		return nil, errors.New("invalid list type")
+	}
+	req, err := newGetRequestWithQueryParams(c, ctx, "/contacts/properties", params)
+	if err != nil {
+		return nil, err
+	}
+	return sendRequest[[]*ContactProperty](c, req)
+}
+
+// CreateContactProperty creates a new contact property.
+// See: https://loops.so/docs/api-reference/create-contact-property
+func (c *Client) CreateContactProperty(ctx context.Context, property *ContactPropertyCreate) error {
+	req, err := newRequestWithBody(c, ctx, http.MethodPost, "/contacts/properties", property)
+	if err != nil {
+		return err
+	}
+	_, err = sendRequest[*SuccessResponse](c, req)
+	return err
+}
+
+// Deprecated: Use GetContactProperties instead.
+func (c *Client) GetCustomFields(ctx context.Context) ([]*ContactProperty, error) {
 	req, err := newGetRequestWithQueryParams(c, ctx, "/contacts/customFields", nil)
 	if err != nil {
 		return nil, err
 	}
-	customFields, err := sendRequest[[]*CustomField](c, req)
+	return sendRequest[[]*ContactProperty](c, req)
+}
+
+// GetDedicatedSendingIPs retrieves a list of Loops' dedicated sending IP addresses.
+// See: https://loops.so/docs/api-reference/list-dedicated-sending-ips
+func (c *Client) GetDedicatedSendingIPs(ctx context.Context) ([]string, error) {
+	req, err := newGetRequestWithQueryParams(c, ctx, "/dedicated-sending-ips", nil)
 	if err != nil {
 		return nil, err
 	}
-	return customFields, nil
+	return sendRequest[[]string](c, req)
+}
+
+type ListTransactionalEmailsOptions struct {
+	// Number of results per page (10-50, default 20)
+	PerPage int
+	// Pagination cursor from previous response
+	Cursor string
+}
+
+// ListTransactionalEmails retrieves a list of published transactional emails.
+// perPage: number of results per page (10-50, default 20)
+// cursor: pagination cursor from previous response
+// See: https://loops.so/docs/api-reference/list-transactional-emails
+func (c *Client) ListTransactionalEmails(ctx context.Context, opts ListTransactionalEmailsOptions) (*TransactionalEmailList, error) {
+	params := url.Values{}
+	if opts.PerPage != 0 {
+		if opts.PerPage < 10 || opts.PerPage > 50 {
+			return nil, errors.New("perPage must be between 10 and 50 (inclusive)")
+		}
+		params.Add("perPage", strconv.Itoa(opts.PerPage))
+	}
+	if opts.Cursor != "" {
+		params.Add("cursor", opts.Cursor)
+	}
+	req, err := newGetRequestWithQueryParams(c, ctx, "/transactional", params)
+	if err != nil {
+		return nil, err
+	}
+	return sendRequest[*TransactionalEmailList](c, req)
 }
 
 // TestAPIKey tests that an API key is valid.

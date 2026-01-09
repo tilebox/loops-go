@@ -16,7 +16,7 @@ func TestContactMarshalJSONCustomPropertiesInlined(t *testing.T) {
 		MailingLists: map[string]bool{
 			"list_123": true,
 		},
-		CustomProperties: map[string]interface{}{
+		Properties: map[string]any{
 			"favoriteColor": "blue",
 		},
 	}
@@ -34,7 +34,7 @@ func TestContactUnmarshalJSONCustomPropertiesInlined(t *testing.T) {
 	assert.Equal(t, "123", c.ID)
 	assert.Equal(t, "test@example.com", c.Email)
 	assert.True(t, c.Subscribed)
-	assert.Equal(t, "blue", c.CustomProperties["favoriteColor"])
+	assert.Equal(t, "blue", c.Properties["favoriteColor"])
 	assert.Equal(t, "John", *c.FirstName)
 	assert.Equal(t, "Doe", *c.LastName)
 	require.Len(t, c.MailingLists, 1)

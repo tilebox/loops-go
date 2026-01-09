@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "f9c686557906d4a1",
+      "ID": "0e65ffdf712f4699",
       "Request": {
         "Method": "POST",
         "URL": "https://app.loops.so/api/v1/contacts/create",
@@ -68,29 +68,23 @@
           "Access-Control-Allow-Origin": [
             "*"
           ],
-          "Cache-Control": [
-            "public, max-age=0, must-revalidate"
-          ],
           "Cf-Cache-Status": [
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "8e48dffe6dce5aaf-VIE"
+            "9bb4210c7cdfafe9-VIE"
           ],
           "Content-Encoding": [
             "gzip"
-          ],
-          "Content-Security-Policy": [
-            "default-src 'self';    connect-src 'self' https://loops-prod-mjml-bucket.s3.amazonaws.com https://loops-prod-csv-uploads.s3.amazonaws.com https://vitals.vercel-insights.com https://browser-intake-datadoghq.com https://*.google-analytics.com https://api.zapier.com https://app.atlas.so https://app.getatlas.io wss://app.atlas.so https://*.filestackapi.com https://atlas-prod-uploads.s3.amazonaws.com https://ipgeolocation.abstractapi.com https://zapier.com;    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.zapier.com https://www.googletagmanager.com https://app.getatlas.io https://app.atlas.so https://static.filestackapi.com https://files.atlas.so;    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.zapier.com https://static.filestackapi.com;    img-src 'self' blob: data: https://d3b9kr64nievew.cloudfront.net https://atlas-prod-uploads.s3.amazonaws.com https://files.getatlas.io https://files.atlas.so https://static.filestackapi.com https://cdn.filestackcontent.com https://zapier-images.imgix.net;    font-src 'self' https://fonts.gstatic.com;    object-src 'none';    frame-src 'self' https://zapier.com;    media-src 'self' data:;    worker-src 'self' blob:;    base-uri 'self';    form-action 'self';    frame-ancestors 'none';    upgrade-insecure-requests;"
           ],
           "Content-Type": [
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Mon, 18 Nov 2024 15:08:18 GMT"
+            "Fri, 09 Jan 2026 13:02:27 GMT"
           ],
           "Etag": [
-            "W/\"oai0fa27xa1d\""
+            "W/\"v3jrx4hjv1d\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -102,13 +96,13 @@
             "cloudflare"
           ],
           "Strict-Transport-Security": [
-            "max-age=63072000"
+            "max-age=31536000; includeSubDomains"
+          ],
+          "Vary": [
+            "Accept-Encoding"
           ],
           "X-Content-Type-Options": [
             "nosniff"
-          ],
-          "X-Matched-Path": [
-            "/api/v1/contacts/create"
           ],
           "X-Ratelimit-Limit": [
             "10"
@@ -116,14 +110,11 @@
           "X-Ratelimit-Remaining": [
             "9"
           ],
-          "X-Vercel-Cache": [
-            "MISS"
-          ],
-          "X-Vercel-Id": [
-            "fra1::iad1::p46k7-1731942497167-d5c57a669dd8"
+          "X-Robots-Tag": [
+            "none"
           ]
         },
-        "Body": "H4sIAAAAAAAAA6pWKi5NTk4tLlayKikqTdVRykxRslJKzjXOM8nOLE00MEo2KLEwtkwqqUzOK081VKoFAAAA//8DAKOElQ0xAAAA"
+        "Body": "H4sIAAAAAAAA/wExAM7/eyJzdWNjZXNzIjp0cnVlLCJpZCI6ImNtazZ2eXViMDBjN2IwaTA0ZGxyZWdlaXQifdgt8TAxAAAA"
       }
     }
   ]

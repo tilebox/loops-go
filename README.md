@@ -40,6 +40,25 @@ func main() {
 
 ### Contacts
 
+**Create a contact**
+```go
+contactID, err := client.CreateContact(ctx, &loops.Contact{
+    Email:      "neil.armstrong@moon.space",
+    FirstName:  loops.String("Neil"),
+    LastName:   loops.String("Armstrong"),
+    UserGroup:  loops.String("Astronauts"),
+    Subscribed: true,
+    // custom user defined properties for contacts
+    Properties: map[string]interface{}{
+        "role": "Astronaut",
+    },
+})
+if err != nil {
+    slog.Error("failed to create contact", slog.Any("error", err.Error()))
+    return
+}
+```
+
 **Find a contact**
 ```go
 contact, err := client.FindContact(ctx, &loops.ContactIdentifier{
@@ -51,25 +70,6 @@ if err != nil {
 }
 ```
 
-**Create a contact**
-```go
-contactID, err := client.CreateContact(ctx, &loops.Contact{
-    Email:      "neil.armstrong@moon.space",
-    FirstName:  loops.String("Neil"),
-    LastName:   loops.String("Armstrong"),
-    UserGroup:  loops.String("Astronauts"),
-    Subscribed: true,
-    // custom user defined properties for contacts
-    CustomProperties: map[string]interface{}{
-        "role": "Astronaut",
-    },
-})
-if err != nil {
-    slog.Error("failed to create contact", slog.Any("error", err.Error()))
-    return
-}
-```
-
 **Delete a contact**
 ```go
 err = client.DeleteContact(ctx, &loops.ContactIdentifier{
@@ -77,6 +77,17 @@ err = client.DeleteContact(ctx, &loops.ContactIdentifier{
 })
 if err != nil {
     slog.Error("failed to delete contact", slog.Any("error", err.Error()))
+    return
+}
+```
+
+**List contact properties**
+```go
+properties, err := client.GetContactProperties(ctx, loops.ContactPropertyListOptions{
+    List: loops.ContactPropertyTypeCustom,  // only return your teams custom properties
+})
+if err != nil {
+    slog.Error("failed to get contact properties", slog.Any("error", err.Error()))
     return
 }
 ```
@@ -113,6 +124,22 @@ err = client.SendTransactionalEmail(ctx, &loops.TransactionalEmail{
 if err != nil {
     slog.Error("failed to send transactional email", slog.Any("error", err.Error()))
     return
+}
+```
+
+**List transactional emails**
+
+```go
+emailsPage, err := client.ListTransactionalEmails(ctx, loops.ListTransactionalEmailsOptions{
+    PerPage: 10,
+})
+if err != nil {
+    slog.Error("failed to list transactional emails", slog.Any("error", err.Error()))
+    return
+}
+
+for _, email := range emailsPage.Data {
+    slog.Info("transactional email", slog.String("id", email.ID), slog.String("name", email.Name))
 }
 ```
 

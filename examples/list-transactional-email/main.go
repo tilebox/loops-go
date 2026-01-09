@@ -18,17 +18,16 @@ func main() {
 	}
 
 	ctx := context.Background()
-
-	err = client.SendTransactionalEmail(ctx, &loops.TransactionalEmail{
-		TransactionalID: "cm3n2vjux00cgeyeflew9ly2w",
-		Email:           "neil.armstrong@moon.space",
-		DataVariables: &map[string]any{
-			"name": "Mr. Armstrong",
-		},
+	emailsPage, err := client.ListTransactionalEmails(ctx, loops.ListTransactionalEmailsOptions{
+		PerPage: 10,
 	})
 	if err != nil {
-		slog.Error("failed to send transactional email", slog.Any("error", err.Error()))
+		slog.Error("failed to list transactional emails", slog.Any("error", err.Error()))
 		return
 	}
-	slog.Info("sent transactional email")
+	slog.Info("transactional emails summary", slog.Int("count", len(emailsPage.Data)))
+
+	for _, email := range emailsPage.Data {
+		slog.Info("transactional email", slog.String("id", email.ID), slog.String("name", email.Name))
+	}
 }
