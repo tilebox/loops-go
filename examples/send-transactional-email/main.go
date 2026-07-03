@@ -19,10 +19,10 @@ func main() {
 
 	ctx := context.Background()
 
-	err = client.SendTransactionalEmail(ctx, &loops.TransactionalEmail{
+	err = client.SendTransactionalEmail(ctx, &loops.TransactionalRequest{
 		TransactionalID: "cm3n2vjux00cgeyeflew9ly2w",
 		Email:           "neil.armstrong@moon.space",
-		DataVariables: &map[string]any{
+		DataVariables: map[string]any{
 			"name": "Mr. Armstrong",
 		},
 	})

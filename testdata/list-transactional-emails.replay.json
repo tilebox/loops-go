@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "cbd8c2e9c9662ded",
+      "ID": "6cacc319f937c5d5",
       "Request": {
         "Method": "GET",
         "URL": "https://app.loops.so/api/v1/transactional",
@@ -69,7 +69,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb4477e1f615b07-VIE"
+            "a154299c79eac25e-VIE"
           ],
           "Content-Encoding": [
             "gzip"
@@ -78,10 +78,10 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:28:42 GMT"
+            "Fri, 03 Jul 2026 07:26:32 GMT"
           ],
           "Etag": [
-            "W/\"wbtmtoqglwam\""
+            "W/\"12vtvh82awwam\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -105,13 +105,13 @@
             "10"
           ],
           "X-Ratelimit-Remaining": [
-            "9"
+            "5"
           ],
           "X-Robots-Tag": [
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/22OwW6DMBBEfwXtGSLbhEB9bH6gqpJWasRhCxtKa2xkm0KE+PcaIbU95LY7szP7ZuixaTX61miQM3jjUT2TG5R3IEUMlvxgNdX/tZ7sEzYUZhZviXUNHo9B0+SPg3XGgtSDUpuyna/7EkONHkFeZmhrkFB1qRbfn8PEWNXQja6Kxgd1EyOEKHYhBo8K9VfkLWqH1UqKKpgKnT/3oYzWGsHEPuE84cWJ72UqZJrtsuLwBtu/F7QtvqsV8rLVlkv8S5Bd86r1nLExHz6E2Yv0UEwN/yN4JVWZjqIkOhrtjKLo7Mi6exRZwngi8hNnUmSS8x1L2T2KcimXH18iEnB+AQAA"
+        "Body": "H4sIAAAAAAAA/4WOzU6EQBCEX4X0GTbDwC4wR/cFjHE1ccOhZXsRHWbI/Agbwrs7hEQ9mHjr6uqq/mYYsO0Uuk4rEDM47VA+kPXSWRA8BkPOG0WX37uBzD22FGYWb4lVBi+NQdHkjt5YbUAoL+W22c5XvcRwQYcgzjN0FxDQ9Jnin+9+Yqxp6UZXSWMlb3yEEMU+xOBOovqInEFlsVlJUQZTonWnIZTRWsMZPyQsT3j5mFYiTwWrdjwrXmD794Smw1e5Qp632nqJvwn216LpXMrYWPg3rnOeHcqpTX8Inkk2uqcoiY5aWS0pOlky9n+KdL8ry+ovinqply/u1FCvfgEAAA=="
       }
     }
   ]

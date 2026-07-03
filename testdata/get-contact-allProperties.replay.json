@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "33d797cb0d2e846a",
+      "ID": "8b3d8ffcde491759",
       "Request": {
         "Method": "GET",
         "URL": "https://app.loops.so/api/v1/contacts/properties",
@@ -69,7 +69,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb4513c6899a464-VIE"
+            "a1542992db8b5b3f-VIE"
           ],
           "Content-Encoding": [
             "gzip"
@@ -78,10 +78,10 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:35:21 GMT"
+            "Fri, 03 Jul 2026 07:26:30 GMT"
           ],
           "Etag": [
-            "W/\"ov7r6awch2my\""
+            "W/\"14va2ga1krvpr\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -105,17 +105,17 @@
             "10"
           ],
           "X-Ratelimit-Remaining": [
-            "9"
+            "5"
           ],
           "X-Robots-Tag": [
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/4WRy2rDMBBFf0VonS/oLoS+oGTR0FUpZiRNGxFZMnosTOm/V3ZkOkk9ZKlz5wjN1fu3POEo7+SnjSnvoUe5kQ4UusoeJiYazOOAlaUcrf+SP5tFdPDPe4HbGvZgHXHu25mb9yFjIvP7dubmu86EeqUnCkGcVRLGZ0OctwrETDglFZV0tAqpdqCwmSoEh+CJqiNCRrPNxNydmZhhM00lRDsiRLNVoeTdEbxHWuPTlIk5FH8pX1IP8YS50g6Kseg1XhS2GrP7TO09xlCG6wIXyL1Dh34AP77WC2kVZyoaZj8glHjx7MMC+LXr32Srwa1vvZZeL/3xC6SXXDs6AwAA"
+        "Body": "H4sIAAAAAAAA/4WTy2rDMBBFf0VonS/oLoS+oITSkFUpZmRNGxFZMnosTOm/V3ZkOk49ZKkzc6SZC3r/lmcc5J38NCGmPXQoN9KCQlvYw8hEhWnosbCYgnFf8mczixb+eS9wW8MOjCXOfT1z/c4njKR/X89cf9NoX650RCGIs3LE8KyJcyxATIRTYlaxDUYh1Q4UVlN5bxEcUduAkFBvEzF3FyYmWE1dCNFOCEFvlc9pdwLnkMb4NNbEVBR/VT6kDsIZU6ENZG3QtbgIbLXM7jOm9xh87q8DnCE3R+u7HtzwVi6kUVyoqJhfoiSdTAt2fYe1KrtC9Dks/MMMuOfDcugbw/YW3NVveS2I+S0fv9FPH0mfAwAA"
       }
     },
     {
-      "ID": "9dfeb47f40fc2993",
+      "ID": "becb12c9c8a9adcf",
       "Request": {
         "Method": "GET",
         "URL": "https://app.loops.so/api/v1/contacts/properties?list=custom",
@@ -154,7 +154,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb4513d4a51a464-VIE"
+            "a1542993bc5f5b3f-VIE"
           ],
           "Content-Encoding": [
             "gzip"
@@ -163,10 +163,10 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:35:21 GMT"
+            "Fri, 03 Jul 2026 07:26:31 GMT"
           ],
           "Etag": [
-            "W/\"zayry85csl3s\""
+            "W/\"vz4rvuh57p6l\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -190,13 +190,13 @@
             "10"
           ],
           "X-Ratelimit-Remaining": [
-            "8"
+            "5"
           ],
           "X-Robots-Tag": [
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/12MvQqAIBRGX0Xu7BO4hUtzazRoXTKyq5gNEr179kfR9ME5fKdeYcQEAgyq0BXaLVEaRYQWOFil8wooD8dOyV4bk8cs5xgG6mHjT6l1k1eUKmfx05AXZTf+nZsdYXNg1ogAAAA="
+        "Body": "H4sIAAAAAAAA/4uuVspOrVSyUspITSxKcUzKLy1xzkjMy0vNUdJRyklMAtJWSh4gOQWwpAJCtqSyIBUoWVxSlJmXrlSrAzMpOT+3IDGvMig/JxXJDGeIqAJUGJfmIlRdBFQX5CTm+SXmIusIAAopQMXQtMUCAMwbmXHtAAAA"
       }
     }
   ]

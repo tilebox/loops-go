@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "0e65ffdf712f4699",
+      "ID": "8610d63bececa901",
       "Request": {
         "Method": "POST",
         "URL": "https://app.loops.so/api/v1/contacts/create",
@@ -39,7 +39,7 @@
             "gzip"
           ],
           "Content-Length": [
-            "137"
+            "129"
           ],
           "User-Agent": [
             "Go-http-client/1.1"
@@ -47,7 +47,7 @@
         },
         "MediaType": "application/json",
         "BodyParts": [
-          "eyJjb21wYW55Um9sZSI6IkRldmVsb3BlciIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSIsImZpcnN0TmFtZSI6IlRlc3QiLCJpZCI6IiIsImxhc3ROYW1lIjoiVXNlciIsInN1YnNjcmliZWQiOnRydWUsInVzZXJJZCI6InVzZXJfMTIzIn0="
+          "eyJjb21wYW55Um9sZSI6IkRldmVsb3BlciIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIiLCJzdWJzY3JpYmVkIjp0cnVlLCJ1c2VySWQiOiJ1c2VyXzEyMyJ9"
         ]
       },
       "Response": {
@@ -72,19 +72,19 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb4210c7cdfafe9-VIE"
+            "a1542989cb1d5aef-VIE"
           ],
-          "Content-Encoding": [
-            "gzip"
+          "Content-Length": [
+            "49"
           ],
           "Content-Type": [
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:02:27 GMT"
+            "Fri, 03 Jul 2026 07:26:30 GMT"
           ],
           "Etag": [
-            "W/\"v3jrx4hjv1d\""
+            "\"r1fb5jhzla1d\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -114,7 +114,7 @@
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/wExAM7/eyJzdWNjZXNzIjp0cnVlLCJpZCI6ImNtazZ2eXViMDBjN2IwaTA0ZGxyZWdlaXQifdgt8TAxAAAA"
+        "Body": "eyJzdWNjZXNzIjp0cnVlLCJpZCI6ImNtcjRtMGIxODA5cjUwajRrN3g2NzZwcTcifQ=="
       }
     }
   ]

@@ -4,6 +4,15 @@
 
 A Go SDK for interacting with [Loops's](https://loops.so) API.
 
+## API Documentation
+
+- Official Loops API documentation: [Loops API reference](https://app.loops.so/docs/api-reference/)
+- This client targets the vendored [openapi.json](openapi.json) spec version `1.16.0`. For the latest Loops OpenAPI spec, see [https://app.loops.so/openapi.json](https://app.loops.so/openapi.json).
+
+## Contributing
+
+Contributions are welcome! If the Loops API changes, community PRs that update [openapi.json](openapi.json), models, client methods, examples, and endpoint tests are very welcome.
+
 ## Installation
 
 ```bash
@@ -22,8 +31,9 @@ package main
 
 import (
 	"context"
-	"github.com/tilebox/loops-go"
 	"log/slog"
+
+	"github.com/tilebox/loops-go"
 )
 
 func main() {
@@ -33,7 +43,7 @@ func main() {
 		slog.Error("failed to create client", slog.Any("error", err.Error()))
 		return
 	}
-	
+
 	// now use the client to make requests
 }
 ```
@@ -49,7 +59,7 @@ contactID, err := client.CreateContact(ctx, &loops.Contact{
     UserGroup:  loops.String("Astronauts"),
     Subscribed: true,
     // custom user defined properties for contacts
-    Properties: map[string]interface{}{
+    Properties: map[string]any{
         "role": "Astronaut",
     },
 })
@@ -84,7 +94,7 @@ if err != nil {
 **List contact properties**
 ```go
 properties, err := client.GetContactProperties(ctx, loops.ContactPropertyListOptions{
-    List: loops.ContactPropertyTypeCustom,  // only return your teams custom properties
+    List: loops.ContactPropertyTypeCustom, // only return your team's custom properties
 })
 if err != nil {
     slog.Error("failed to get contact properties", slog.Any("error", err.Error()))
@@ -99,7 +109,7 @@ if err != nil {
 err = client.SendEvent(ctx, &loops.Event{
     Email:     loops.String("neil.armstrong@moon.space"),
     EventName: "joinedMission",
-    EventProperties: &map[string]interface{}{
+    EventProperties: map[string]any{
         "mission": "Apollo 11",
     },
 })
@@ -114,10 +124,10 @@ if err != nil {
 **Send a transactional email**
 
 ```go
-err = client.SendTransactionalEmail(ctx, &loops.TransactionalEmail{
-    TransactionalId: "cm...",
+err = client.SendTransactionalEmail(ctx, &loops.TransactionalRequest{
+    TransactionalID: "cm...",
     Email:           "recipient@example.com",
-    DataVariables: &map[string]interface{}{
+    DataVariables: map[string]any{
         "name": "Recipient Name",
     },
 })
@@ -143,13 +153,7 @@ for _, email := range emailsPage.Data {
 }
 ```
 
-## API Documentation
-
-The API documentation is part of the official Loops Documentation and can be found [here](https://app.loops.so/docs/api-reference/).
-
-## Contributing
-
-Contributions are welcome! Especially if the loops API is updated, please feel free to open PRs for new or updated endpoints.
+For more complete flows, see the [transactional email lifecycle](examples/transactional-email-lifecycle) and [image upload](examples/upload-image-asset) examples.
 
 ## Authors
 

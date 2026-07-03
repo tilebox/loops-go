@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "b211794fc7143b4b",
+      "ID": "1e3987b26c88be8a",
       "Request": {
         "Method": "GET",
         "URL": "https://app.loops.so/api/v1/contacts/find?userId=not_found",
@@ -69,19 +69,19 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb451ac580651d5-VIE"
+            "a1542991aa585b88-VIE"
           ],
-          "Content-Encoding": [
-            "gzip"
+          "Content-Length": [
+            "2"
           ],
           "Content-Type": [
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:35:39 GMT"
+            "Fri, 03 Jul 2026 07:26:30 GMT"
           ],
           "Etag": [
-            "W/\"38jmpejbxv2\""
+            "\"38jmpejbxv2\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -105,13 +105,13 @@
             "10"
           ],
           "X-Ratelimit-Remaining": [
-            "9"
+            "6"
           ],
           "X-Robots-Tag": [
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/4uOBQApu0wNAgAAAA=="
+        "Body": "W10="
       }
     }
   ]

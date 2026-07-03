@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "0d34c2f7c51f0e85",
+      "ID": "f249d6c882c80287",
       "Request": {
         "Method": "GET",
         "URL": "https://app.loops.so/api/v1/lists",
@@ -69,7 +69,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb447ff8a7cc275-VIE"
+            "a15429972be58eb1-VIE"
           ],
           "Content-Encoding": [
             "gzip"
@@ -78,7 +78,7 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:29:02 GMT"
+            "Fri, 03 Jul 2026 07:26:31 GMT"
           ],
           "Etag": [
             "W/\"x2h0kktws955\""
@@ -105,13 +105,13 @@
             "10"
           ],
           "X-Ratelimit-Remaining": [
-            "9"
+            "5"
           ],
           "X-Robots-Tag": [
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/43MsQ6CMBCA4VcxNzOcFEX7EIbFyThAe5YLbcH2Gk2M7y6Trq5//nyXF7AFDSaoWLfN84Z1O2JgpaS5j8k6qCD2gdblRI/sSYTS2ixlk3gRniPoWLyvgHNXBs8GtKRC7+or792AU0GsLeLE7I4H2u5U+sldmm0xsjkvthf6S79+AIdo7M+5AAAA"
+        "Body": "H4sIAAAAAAAA/43MsQ6CMBCA4VcxN3c4KYryEIbFyThAe5YLbcH2Gk2M7y6Trq5//nyXF7CFFkzQsWrq5w2rZsTAWkt9H5N1oCD2gdblRI/sSYTS2ixlk3gRniO0sXivgHNXBs8GWkmF3uor792AU0GsLOLE7I4H2u50+sldmm0xsjkvthf6S79+AIdo7M+5AAAA"
       }
     }
   ]

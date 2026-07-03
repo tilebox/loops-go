@@ -2,7 +2,7 @@
 ---
 version: "2"
 linters:
-  enable: # list taken from https://golangci-lint.run/usage/linters/ - last updated 2026-01-09 for v2.8.0
+  enable: # list taken from https://golangci-lint.run/usage/linters/ - last updated 2026-05-11 for v2.12.2
     # enabled by default, but list them here to be explicit
     - errcheck
     - govet
@@ -16,6 +16,7 @@ linters:
     - bidichk # checks for dangerous unicode character sequences
     - bodyclose # checks whether HTTP response body is closed successfully
     - canonicalheader # checks for canonical names in HTTP headers
+    - clickhouselint # detects common mistakes with the ClickHouse native Go driver API
     - containedctx # detects struct contained context.Context field
     #- contextcheck # checks for inherited context.Context
     - copyloopvar # detects places where loop variables are copied
@@ -45,7 +46,7 @@ linters:
     - gochecknoinits # checks that no init functions are present in Go code
     - gochecksumtype # checks exhaustiveness on Go "sum types"
     #- gocognit # Computes and checks the cognitive complexity of functions
-    - goconst # finds repeated strings that could be replaced by a constant
+    #- goconst # finds repeated strings that could be replaced by a constant
     - gocritic # provides diagnostics that check for bugs, performance and style issues
     #- gocyclo # Computes and checks the cyclomatic complexity of functions
     - godoclint # Checks golang docs best practices (godoc)
@@ -53,7 +54,8 @@ linters:
     #- godox # Tool for detection of FIXME, TODO and other comment keywords
     #- goheader # Checks is file header matches to pattern
     - gomoddirectives # manages the use of 'replace', 'retract', and 'excludes' directives in go.mod
-    - gomodguard # allow and block lists linter for direct Go module dependencies. This is different from depguard where there are different block types for example version constraints and module recommendations
+    #- gomodguard # allow and block lists linter for direct Go module dependencies. This is different from depguard where there are different block types for example version constraints and module recommendations
+    - gomodguard_v2 # Allow and blocklist linter for direct Go module dependencies
     - goprintffuncname # checks that printf-like functions are named with f at the end
     - gosec # inspects source code for security problems
     - gosmopolitan # Report certain i18n/l10n anti-patterns in your Go codebase.
@@ -143,6 +145,7 @@ linters:
     tagalign:
       order:
         - flag
+        - arg
         - env
         - default
         - secret
