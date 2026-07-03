@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "6a36d052f1687fbc",
+      "ID": "28c659146d596e26",
       "Request": {
         "Method": "PUT",
         "URL": "https://app.loops.so/api/v1/contacts/update",
@@ -39,7 +39,7 @@
             "gzip"
           ],
           "Content-Length": [
-            "120"
+            "112"
           ],
           "User-Agent": [
             "Go-http-client/1.1"
@@ -47,7 +47,7 @@
         },
         "MediaType": "application/json",
         "BodyParts": [
-          "eyJlbWFpbCI6Im5ldy10ZXN0LW1haWxAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IiwiaWQiOiIiLCJsYXN0TmFtZSI6IlVzZXIiLCJzdWJzY3JpYmVkIjp0cnVlLCJ1c2VySWQiOiJ1c2VyXzEyMyJ9"
+          "eyJlbWFpbCI6Im5ldy10ZXN0LW1haWxAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IiwibGFzdE5hbWUiOiJVc2VyIiwic3Vic2NyaWJlZCI6dHJ1ZSwidXNlcklkIjoidXNlcl8xMjMifQ=="
         ]
       },
       "Response": {
@@ -72,19 +72,19 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb421ff8f646cb4-VIE"
+            "a154298e0923f406-VIE"
           ],
-          "Content-Encoding": [
-            "gzip"
+          "Content-Length": [
+            "49"
           ],
           "Content-Type": [
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:03:06 GMT"
+            "Fri, 03 Jul 2026 07:26:30 GMT"
           ],
           "Etag": [
-            "W/\"v3jrx4hjv1d\""
+            "\"r1fb5jhzla1d\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -114,7 +114,7 @@
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/wExAM7/eyJzdWNjZXNzIjp0cnVlLCJpZCI6ImNtazZ2eXViMDBjN2IwaTA0ZGxyZWdlaXQifdgt8TAxAAAA"
+        "Body": "eyJzdWNjZXNzIjp0cnVlLCJpZCI6ImNtcjRtMGIxODA5cjUwajRrN3g2NzZwcTcifQ=="
       }
     }
   ]

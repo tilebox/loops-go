@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "a47a7bcf26d3ba62",
+      "ID": "aa2367c7a1166e0e",
       "Request": {
         "Method": "GET",
         "URL": "https://app.loops.so/api/v1/contacts/find?email=new-test-mail%40example.com",
@@ -69,7 +69,7 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb423820f64b855-VIE"
+            "a154298f5faec2f7-VIE"
           ],
           "Content-Encoding": [
             "gzip"
@@ -78,10 +78,10 @@
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:04:08 GMT"
+            "Fri, 03 Jul 2026 07:26:30 GMT"
           ],
           "Etag": [
-            "W/\"n8rs4l5qf6o\""
+            "W/\"1739x2n5dr66o\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -105,13 +105,13 @@
             "10"
           ],
           "X-Ratelimit-Remaining": [
-            "9"
+            "8"
           ],
           "X-Robots-Tag": [
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/z2OywrCMBBF/2XWVeoDBVcKghRExMdKRNI4SjAvkolaSv/diYK7uYfDnXtqQV1hBtI8Js8m1WUpp3WpyvFVB7yjIigAjVCaHYuvHmGkXs5zfAvjNfalM+zcVIi0EQbZO7DDSIs/OUYMTKJLQea82FY5pjrKoGrkARQSFpDYWwWXPDvwi1Vel4/LYDhixu+8sM3O6Vy0xCdq57/teZWy97WKFGHWdgU4T5Xdk6DEwCatu/MH9XnW5/AAAAA="
+        "Body": "H4sIAAAAAAAA/z2OWwsBURSF/8t+HhqMGTxRSlOSXJ4knRmbDufmXBjJf7cP5W2vr6+11+4F/AgjqKXNZFp1BunQ9tNLdi2avMjNrYAEUDIuyFH4aHl0vhXzGBsmjcB2rSU5J26dXzCJ5G3IISTYn2wdWiJOB1vHPFmWMYbK1ZZXSAO8DZhAIG9mdTDkwC+WcV08Dp1ujxi9M0w9V1rEoineUWjzbY+ruDrPufMORq93Atr4Uq0984GACkK89x8KSb/t8AAAAA=="
       }
     }
   ]

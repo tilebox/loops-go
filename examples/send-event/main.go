@@ -22,7 +22,7 @@ func main() {
 	err = client.SendEvent(ctx, &loops.Event{
 		Email:     loops.String("neil.armstrong@moon.space"),
 		EventName: "joinedMission",
-		EventProperties: &map[string]any{
+		EventProperties: map[string]any{
 			"mission": "Apollo 11",
 		},
 	})

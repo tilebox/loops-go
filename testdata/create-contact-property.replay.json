@@ -30,7 +30,7 @@
   },
   "Entries": [
     {
-      "ID": "0bb350a3449309bc",
+      "ID": "65ac14f3049ec5c1",
       "Request": {
         "Method": "POST",
         "URL": "https://app.loops.so/api/v1/contacts/properties",
@@ -39,7 +39,7 @@
             "gzip"
           ],
           "Content-Length": [
-            "35"
+            "43"
           ],
           "User-Agent": [
             "Go-http-client/1.1"
@@ -47,7 +47,7 @@
         },
         "MediaType": "application/json",
         "BodyParts": [
-          "eyJuYW1lIjoicGxhbk5hbWUiLCJ0eXBlIjoic3RyaW5nIn0="
+          "eyJuYW1lIjoicGxhbk5hbWUyMDI2MDcwMyIsInR5cGUiOiJzdHJpbmcifQ=="
         ]
       },
       "Response": {
@@ -72,19 +72,19 @@
             "DYNAMIC"
           ],
           "Cf-Ray": [
-            "9bb4499bae9a5db9-VIE"
+            "a1542994e91dc29b-VIE"
           ],
-          "Content-Encoding": [
-            "gzip"
+          "Content-Length": [
+            "16"
           ],
           "Content-Type": [
             "application/json; charset=utf-8"
           ],
           "Date": [
-            "Fri, 09 Jan 2026 13:30:08 GMT"
+            "Fri, 03 Jul 2026 07:26:31 GMT"
           ],
           "Etag": [
-            "W/\"17a6zzdutk1g\""
+            "\"17a6zzdutk1g\""
           ],
           "Permissions-Policy": [
             "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
@@ -108,13 +108,13 @@
             "10"
           ],
           "X-Ratelimit-Remaining": [
-            "9"
+            "5"
           ],
           "X-Robots-Tag": [
             "none"
           ]
         },
-        "Body": "H4sIAAAAAAAA/6tWKi5NTk4tLlayKikqTa0FAN/39mYQAAAA"
+        "Body": "eyJzdWNjZXNzIjp0cnVlfQ=="
       }
     }
   ]
